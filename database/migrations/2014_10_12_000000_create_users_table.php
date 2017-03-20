@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('user'); // user or admin
 	        $table->string('registration_date');
 	        $table->integer('level'); // Divide Users
+	        $table->ipAddress('register_ip');
 	        $table->integer('ref_by')->nullable();
 	        $table->string('status')->default('pending'); // enable or disable or pending
 	        $table->text('note')->nullable();

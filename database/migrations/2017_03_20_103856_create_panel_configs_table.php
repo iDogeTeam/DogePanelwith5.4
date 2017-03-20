@@ -6,23 +6,28 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePanelConfigsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        //
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('sp_config', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('key');
+			$table->string('value');
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('sp_config');
+	}
 }

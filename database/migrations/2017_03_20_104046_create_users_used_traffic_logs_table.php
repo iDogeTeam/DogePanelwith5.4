@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePanelLogsTable extends Migration
+class CreateUsersTrafficLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,25 @@ class CreatePanelLogsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('sp_log', function (Blueprint $table) {
+	    Schema::create('ss_user_used_traffic_log', function (Blueprint $table) {
 		    $table->increments('id');
 		    $table->integer('user_id');
-		    $table->string('action');
-		    $table->string('description');
+		    $table->integer('upload');
+		    $table->integer('download');
+		    $table->integer('node_id');
+		    $table->integer('rate_group')->default(0);
+		    $table->string('traffic');
 		    $table->timestamps();
 	    });
     }
 
 	/**
 	 * Reverse the migrations.
-	 *
+	 *：
 	 * @return void
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('sp_log');
+		Schema::dropIfExists('ss_user_used_traffic_log');
 	}
 }

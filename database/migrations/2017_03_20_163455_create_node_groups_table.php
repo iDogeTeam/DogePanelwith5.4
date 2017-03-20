@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePanelLogsTable extends Migration
+class CreateNodeGroupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePanelLogsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('sp_log', function (Blueprint $table) {
+	    Schema::create('ss_node_groups', function (Blueprint $table) {
 		    $table->increments('id');
-		    $table->integer('user_id');
-		    $table->string('action');
+		    $table->string('name');
+		    $table->integer('traffic_rate');
 		    $table->string('description');
 		    $table->timestamps();
 	    });

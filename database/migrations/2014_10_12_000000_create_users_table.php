@@ -30,9 +30,7 @@ class CreateUsersTable extends Migration
 	        $table->bigInteger('traffic_enable');
             $table->bigInteger('upload');
             $table->bigInteger('download');
-            $table->string('ss_passwd');
-            $table->integet('ss_port');
-            $table->string('method');
+
             // Communication related
             $table->integer('telegram_id')->nullable();
 

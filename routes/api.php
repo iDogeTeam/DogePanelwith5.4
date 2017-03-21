@@ -14,5 +14,18 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
+});
+
+
+// Webapi 相关
+Route::group(['prefix' => 'mu', 'middleware' => 'mu'], function () {
+	Route::get('/users', 'API/Muv2Controller@userInfo');  // I don't get it.
+	Route::post('/users/{id}/traffic', 'API/Muv2Controller@addUserTraffic');
+	/* @TODO This api is gonna kill me
+	 * $this->get('/nodes/{id}/users', 'API/Muv2Controller@nodeTraffic');
+	 * $this->post('/nodes/{id}/online_count', 'App\Controllers\MuV2\NodeController:onlineUserLog');
+	 * $this->post('/nodes/{id}/info', 'App\Controllers\MuV2\NodeController:info');
+	 * $this->post('/nodes/{id}/traffic', 'App\Controllers\MuV2\NodeController:postTraffic');
+	 */
 });

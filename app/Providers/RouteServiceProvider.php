@@ -24,6 +24,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+	    // ID Limits
+	    Route::pattern('id', '[0-9]+');
 
         parent::boot();
     }

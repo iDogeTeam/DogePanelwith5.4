@@ -16,11 +16,11 @@ class CreateUsersTrafficLogsTable extends Migration
 	    Schema::create('ss_user_used_traffic_log', function (Blueprint $table) {
 		    $table->increments('id');
 		    $table->integer('user_id');
-		    $table->integer('upload');
-		    $table->integer('download');
+		    $table->integer('upload'); // Reflect to 'u'
+		    $table->integer('download'); // Reflect to 'd'
 		    $table->integer('node_id');
 		    $table->integer('rate_group')->default(0);
-		    $table->string('traffic');
+		    $table->string('time'); // Reflect to 't'
 		    $table->timestamps();
 	    });
     }

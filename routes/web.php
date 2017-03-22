@@ -35,7 +35,7 @@ Auth::routes();
  */
 
 // 用户路由
-Route::group(['middleware' => 'auth','active'], function () {
+Route::group(['middleware' => 'auth', 'active'], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'HomeController@index');
@@ -83,11 +83,11 @@ Route::group(['middleware' => 'auth','active'], function () {
 	// 系统信息
 	Route::get('/system', 'HomeController@gist');
 
-})->where(['id' => '[0-9]+']);
+});
 
 
 // 管理路由
-Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'admin'], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'Admin/HomeController@index');
@@ -131,9 +131,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function () 
 		Route::delete('/{id}/delete', 'Admin/GiftCodeController@deleteIndividual');
 	});
 
-})->where(['id' => '[0-9]+']);
+});
 
 // 错误页
-Route::get('/error/status', function(){
+Route::get('/error/status', function () {
 	return view('status.account');
 })->name('status');

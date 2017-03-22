@@ -16,7 +16,7 @@ class CreateUserTrafficChangeTable extends Migration
 		Schema::create('ss_user_traffic_change_log', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->double('traffic');
+			$table->bigInteger('traffic');
 			$table->string('type'); // GiftCode, Checkin, etc
 			$table->text('note')->nullable();  // Description on a specific traffic
 			$table->timestamps();

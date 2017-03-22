@@ -18,6 +18,7 @@ class CreateUserServicesTable extends Migration
 		    $table->increments('id');
 		    $table->integer('user_id');
 		    $table->string('type'); // anyconnect or shadowsocks
+		    $table->string('status')->default('enable'); // enable or disable
 	    	$table->string('password');
 		    $table->integet('port')->nullable();
 		    $table->string('method')->nullable();

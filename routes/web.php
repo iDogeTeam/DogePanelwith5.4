@@ -35,7 +35,7 @@ Auth::routes();
  */
 
 // 用户路由
-Route::group(['middleware' => 'active'], function () {
+Route::group(['middleware' => 'auth','active'], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'HomeController@index');
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'active'], function () {
 	// 节点信息
 	Route::group(['prefix' => 'node'], function () {
 		Route::get('/', 'NodeController@index');
-		Route::get('/{id}', 'NodeController@showIndividual')->where(['id' => '[0-9]+']);
+		Route::get('/{id}', 'NodeController@showIndividual');
 	});
 
 	// 用户信息
@@ -83,11 +83,11 @@ Route::group(['middleware' => 'active'], function () {
 	// 系统信息
 	Route::get('/system', 'HomeController@gist');
 
-});
+})->where(['id' => '[0-9]+']);
 
 
 // 管理路由
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'Admin/HomeController@index');
@@ -98,37 +98,42 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
 	// 面板管理
 	Route::group(['prefix' => 'config'], function () {
-		Route::get('/{id}', 'Admin/ConfigController@showIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}', 'Admin/ConfigController@addIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}/edit', 'Admin/ConfigController@modifyIndividual')->where(['id' => '[0-9]+']);
-		Route::delete('/{id}/delete', 'Admin/ConfigController@deleteIndividual')->where(['id' => '[0-9]+']);
+		Route::get('/{id}', 'Admin/ConfigController@showIndividual');
+		Route::post('/{id}', 'Admin/ConfigController@addIndividual');
+		Route::post('/{id}/edit', 'Admin/ConfigController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin/ConfigController@deleteIndividual');
 	});
 
 	// 用户管理
 	Route::group(['prefix' => 'user'], function () {
 		Route::get('/', 'Admin/UserController@index');
-		Route::get('/{id}', 'Admin/UserController@showIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}', 'Admin/UserController@addIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}/edit', 'Admin/UserController@modifyIndividual')->where(['id' => '[0-9]+']);
-		Route::delete('/{id}/delete', 'Admin/UserController@deleteIndividual')->where(['id' => '[0-9]+']);
+		Route::get('/{id}', 'Admin/UserController@showIndividual');
+		Route::post('/{id}', 'Admin/UserController@addIndividual');
+		Route::post('/{id}/edit', 'Admin/UserController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin/UserController@deleteIndividual');
 	});
 
 	// 节点管理
 	Route::group(['prefix' => 'node'], function () {
 		Route::get('/', 'Admin/NodeController@index');
-		Route::get('/{id}', 'Admin/NodeController@showIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}', 'Admin/NodeController@addIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}/edit', 'Admin/NodeController@modifyIndividual')->where(['id' => '[0-9]+']);
-		Route::delete('/{id}/delete', 'Admin/NodeController@deleteIndividual')->where(['id' => '[0-9]+']);
+		Route::get('/{id}', 'Admin/NodeController@showIndividual');
+		Route::post('/{id}', 'Admin/NodeController@addIndividual');
+		Route::post('/{id}/edit', 'Admin/NodeController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin/NodeController@deleteIndividual');
 	});
 
 	// 礼品码信息，暂不处理
 	Route::group(['prefix' => 'giftcode'], function () {
 		Route::get('/', 'Admin/GiftCodeController@index');
-		Route::get('/{id}', 'Admin/GiftCodeController@showIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}', 'Admin/GiftCodeController@addIndividual')->where(['id' => '[0-9]+']);
-		Route::post('/{id}/edit', 'Admin/GiftCodeController@modifyIndividual')->where(['id' => '[0-9]+']);
-		Route::delete('/{id}/delete', 'Admin/GiftCodeController@deleteIndividual')->where(['id' => '[0-9]+']);
+		Route::get('/{id}', 'Admin/GiftCodeController@showIndividual');
+		Route::post('/{id}', 'Admin/GiftCodeController@addIndividual');
+		Route::post('/{id}/edit', 'Admin/GiftCodeController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin/GiftCodeController@deleteIndividual');
 	});
 
-});
+})->where(['id' => '[0-9]+']);
+
+// 错误页
+Route::get('/error/status', function(){
+	return view('status.account');
+})->name('status');

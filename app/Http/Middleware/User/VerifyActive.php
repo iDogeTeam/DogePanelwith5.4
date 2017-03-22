@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Middleware\Admin;
+namespace App\Http\Middleware\User;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
-class VerifyAdmin
+class VerifyActive
 {
 	/**
 	 * Handle an incoming request.
@@ -17,10 +16,10 @@ class VerifyAdmin
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (Auth::check() && Auth::user()->role === 'admin') {
+		if (Auth::check() && Auth::user()->status != 'disable') {
 			return $next($request);
 		}
-		abort(403, __('auth.credential_required'));
-		Log::warning('failed admin operation from IP "' . $request->ip() . '"');
+
+		return redirect()->route('status');
 	}
 }

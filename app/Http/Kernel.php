@@ -57,7 +57,7 @@ class Kernel extends HttpKernel
 		'guest'      => \App\Http\Middleware\RedirectIfAuthenticated::class,
 		'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		'admin'      => \App\Http\Middleware\Admin\VerifyAdmin::class,
-		'active'     => \App\Http\Middleware\User\ActiveVerify::class,
+		'active'     => \App\Http\Middleware\User\VerifyActive::class,
 		'mu'         => \App\Http\Middleware\API\VerifyMuKey::class,
 	];
 }

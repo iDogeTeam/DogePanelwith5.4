@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
 		'admin'      => \App\Http\Middleware\Admin\VerifyAdmin::class,
 		'active'     => \App\Http\Middleware\User\VerifyActive::class,
 		'mu'         => \App\Http\Middleware\API\VerifyMuKey::class,
+		'encode' => \App\Http\Middleware\EncodeJson::class,
 	];
 }

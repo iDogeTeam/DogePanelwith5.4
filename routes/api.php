@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Webapi 相关
 Route::group(['prefix' => 'mu', 'middleware' => 'mu'], function () {
-	Route::get('/users', 'API/Muv2Controller@userInfo');  // I don't get it.
-	Route::post('/users/{id}/traffic', 'API/Muv2Controller@addUserTraffic');
+	Route::get('/users', 'API\Muv2Controller@userInfo');  // I don't get it.
+	Route::post('/users/{id}/traffic', 'API\Muv2Controller@addUserTraffic');
 	/* @TODO This api is gonna kill me
 	 * $this->get('/nodes/{id}/users', 'API/Muv2Controller@nodeTraffic');
 	 * $this->post('/nodes/{id}/online_count', 'App\Controllers\MuV2\NodeController:onlineUserLog');

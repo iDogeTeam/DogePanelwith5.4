@@ -11,22 +11,18 @@
 |
 */
 
+Auth::routes();
+
 /*
  * |   **注意**
  * | 以下为公开页面，请注意保护
  */
-// 首页
-Route::get('/', function () {
-	return view('welcome');
-});
 
 // 附属条款
-Route::get('/tos', function () {
-	return view('tos');
-});
+Route::get('/tos', 'HomeController@showTos');
 
 // 验证路由
-Auth::routes();
+
 
 // **公开页面结束**
 
@@ -35,7 +31,7 @@ Auth::routes();
  */
 
 // 用户路由
-Route::group(['middleware' => ['auth', 'active','encode']], function () {
+Route::group(['middleware' => ['auth', 'active', 'encode']], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'HomeController@index');
@@ -87,48 +83,48 @@ Route::group(['middleware' => ['auth', 'active','encode']], function () {
 
 
 // 管理路由
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin','encode']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'encode']], function () {
 
 	// 着陆页
-	Route::get('/dashboard', 'Admin/HomeController@index');
+	Route::get('/dashboard', 'Admin\HomeController@index');
 
 	// 面板信息
 
-	Route::get('/system', 'Admin/HomeController@systemInfo');
+	Route::get('/system', 'Admin\HomeController@systemInfo');
 
 	// 面板管理
 	Route::group(['prefix' => 'config'], function () {
-		Route::get('/{id}', 'Admin/ConfigController@showIndividual');
-		Route::post('/{id}', 'Admin/ConfigController@addIndividual');
-		Route::post('/{id}/edit', 'Admin/ConfigController@modifyIndividual');
-		Route::delete('/{id}/delete', 'Admin/ConfigController@deleteIndividual');
+		Route::get('/{id}', 'Admin\ConfigController@showIndividual');
+		Route::post('/{id}', 'Admin\ConfigController@addIndividual');
+		Route::post('/{id}/edit', 'Admin\ConfigController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin\ConfigController@deleteIndividual');
 	});
 
 	// 用户管理
 	Route::group(['prefix' => 'user'], function () {
-		Route::get('/', 'Admin/UserController@index');
-		Route::get('/{id}', 'Admin/UserController@showIndividual');
-		Route::post('/{id}', 'Admin/UserController@addIndividual');
-		Route::post('/{id}/edit', 'Admin/UserController@modifyIndividual');
-		Route::delete('/{id}/delete', 'Admin/UserController@deleteIndividual');
+		Route::get('/', 'Admin\UserController@index');
+		Route::get('/{id}', 'Admin\UserController@showIndividual');
+		Route::post('/{id}', 'Admin\UserController@addIndividual');
+		Route::post('/{id}/edit', 'Admin\UserController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin\UserController@deleteIndividual');
 	});
 
 	// 节点管理
 	Route::group(['prefix' => 'node'], function () {
-		Route::get('/', 'Admin/NodeController@index');
-		Route::get('/{id}', 'Admin/NodeController@showIndividual');
-		Route::post('/{id}', 'Admin/NodeController@addIndividual');
-		Route::post('/{id}/edit', 'Admin/NodeController@modifyIndividual');
-		Route::delete('/{id}/delete', 'Admin/NodeController@deleteIndividual');
+		Route::get('/', 'Admin\NodeController@index');
+		Route::get('/{id}', 'Admin\NodeController@showIndividual');
+		Route::post('/{id}', 'Admin\NodeController@addIndividual');
+		Route::post('/{id}/edit', 'Admin\NodeController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin\NodeController@deleteIndividual');
 	});
 
 	// 礼品码信息，暂不处理
 	Route::group(['prefix' => 'giftcode'], function () {
-		Route::get('/', 'Admin/GiftCodeController@index');
-		Route::get('/{id}', 'Admin/GiftCodeController@showIndividual');
-		Route::post('/{id}', 'Admin/GiftCodeController@addIndividual');
-		Route::post('/{id}/edit', 'Admin/GiftCodeController@modifyIndividual');
-		Route::delete('/{id}/delete', 'Admin/GiftCodeController@deleteIndividual');
+		Route::get('/', 'Admin\GiftCodeController@index');
+		Route::get('/{id}', 'Admin\GiftCodeController@showIndividual');
+		Route::post('/{id}', 'Admin\GiftCodeController@addIndividual');
+		Route::post('/{id}/edit', 'Admin\GiftCodeController@modifyIndividual');
+		Route::delete('/{id}/delete', 'Admin\GiftCodeController@deleteIndividual');
 	});
 
 });

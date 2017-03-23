@@ -1,7 +1,8 @@
 # DogePanelwith5.4
 Now building with laravel 5.4
 
-__reconstructing based on orvice/ss-panel__
+_reconstructing based on orvice/ss-panel_  
+Under developing...
 
 # Plan
 
@@ -23,11 +24,15 @@ You can use these command to dev you own frontend ui.
 
 Based on Laravel 5.4
 
-Construction
+##Construction
 
-Recommanded : php70+ redis MariaDB
+Recommanded env: 
+- apache
+- php70+, prefork mode
+- MariaDB
+- Redis
 
-Please run the following commands at the root dictionary one by one
+Please run the following commands at the root dictionary one by one  
 ** Note that we strongly recommand that `Redis` config for this application ! **
 
 - Composer

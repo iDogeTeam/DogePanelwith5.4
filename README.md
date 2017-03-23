@@ -1,7 +1,8 @@
 # DogePanelwith5.4
 Now building with laravel 5.4
 
-__reconstructing based on orvice/ss-panel__
+_reconstructing based on orvice/ss-panel_  
+Under developing...
 
 # Plan
 
@@ -13,6 +14,10 @@ __reconstructing based on orvice/ss-panel__
 
 Based on [vue 2](https://github.com/vuejs/vue) and [element-ui](https://github.com/ElemeFE/element).
 
+## Install
+
+- `npm install`
+
 You can use these command to dev you own frontend ui.
 
 - dev `npm run dev`
@@ -21,14 +26,19 @@ You can use these command to dev you own frontend ui.
 
 # Backend
 
-Based on Laravel 5.4
+Based on [Laravel 5.4](https://github.com/laravel/laravel)
 
-Construction
+## Construction  
 
-Recommanded : php70+ redis MariaDB
+Recommended env: 
+- apache
+- php70+, prefork mode
+- MariaDB
+- Redis
 
-Please run the following commands at the root dictionary one by one
-** Note that we strongly recommand that `Redis` config for this application ! **
+Please run the following commands at the root dictionary. 
+
+**Note that we strongly recommend that `Redis` config for this application !**  
 
 - Composer
   - `Composer install`

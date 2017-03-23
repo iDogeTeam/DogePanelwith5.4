@@ -14,6 +14,10 @@ Under developing...
 
 Based on [vue 2](https://github.com/vuejs/vue) and [element-ui](https://github.com/ElemeFE/element).
 
+## Install
+
+- `npm install`
+
 You can use these command to dev you own frontend ui.
 
 - dev `npm run dev`
@@ -22,18 +26,19 @@ You can use these command to dev you own frontend ui.
 
 # Backend
 
-Based on Laravel 5.4
+Based on [Laravel 5.4](https://github.com/laravel/laravel)
 
-##Construction
+## Construction  
 
-Recommanded env: 
+Recommended env: 
 - apache
 - php70+, prefork mode
 - MariaDB
 - Redis
 
-Please run the following commands at the root dictionary one by one  
-** Note that we strongly recommand that `Redis` config for this application ! **
+Please run the following commands at the root dictionary. 
+
+**Note that we strongly recommend that `Redis` config for this application !**  
 
 - Composer
   - `Composer install`

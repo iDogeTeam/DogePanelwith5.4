@@ -22,6 +22,8 @@ class CreateUserServicesTable extends Migration
 	    	$table->string('password');
 		    $table->integet('port')->nullable();
 		    $table->string('method')->nullable();
+		    $table->integer('total_cost');
+		    $table->
 		    $table->timestamps();
 	    });
     }

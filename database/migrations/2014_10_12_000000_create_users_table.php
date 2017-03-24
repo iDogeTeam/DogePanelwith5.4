@@ -25,13 +25,13 @@ class CreateUsersTable extends Migration
 	        $table->integer('ref_by')->nullable();
 	        $table->string('status')->default('pending'); // enable or disable or pending
 	        $table->text('note')->nullable();
-            // Traffic related
-	        $table->bigInteger('total_traffic');
-	        $table->bigInteger('traffic_enable');
-            $table->bigInteger('upload');
-            $table->bigInteger('download');
 
-            // Communication related
+	        //  Service related
+	        $table->bigInteger('coin')->default(env('INIT_COIN',1000));
+	        $table->integer('quota');
+
+            // Communication tools related
+	        $table->string('telegram_token')->nullable();
             $table->integer('telegram_id')->nullable();
 
             $table->rememberToken();

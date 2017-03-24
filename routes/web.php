@@ -31,7 +31,7 @@ Route::get('/tos', 'HomeController@showTos');
  */
 
 // 用户路由
-Route::group(['middleware' => ['auth', 'active', 'encode']], function () {
+Route::group(['middleware' => ['auth', 'active']], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'HomeController@index');
@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'active', 'encode']], function () {
 
 
 // 管理路由
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'encode']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
 	// 着陆页
 	Route::get('/dashboard', 'Admin\HomeController@index');

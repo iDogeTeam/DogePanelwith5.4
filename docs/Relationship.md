@@ -1,9 +1,8 @@
 # User
 
 - A user has many Services
-- A user belong to a Group
 - A user has many UserChangeLogs
-- A user has many Itemsi
+- A user has many Items
 - A user belongs to a UserGroup
 
 # Service
@@ -14,7 +13,7 @@
 
 # NodeGroup
 
-- A group has many Users
+- A group has many Services
 - A group has many Nodes
 
 # Node

@@ -31,23 +31,23 @@ class User extends Authenticatable
 	// Relationship
 
 	/**
-	 * Link to user traffic log
+	 * Link to a group
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function usedTrafficLogs()
+	public function userGroup()
 	{
-		return $this->hasMany('App\UserUsedTraffic', 'user_id', 'id');
+		return $this->belongsTo(UserGroup::class, 'user_id', 'id');
 	}
 
 	/**
-	 * Link to user traffic change log
+	 * Link to user change log
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function trafficChangeLogs()
+	public function userChangeLog()
 	{
-		return $this->hasMany('App\UserTrafficChange', 'user_id', 'id');
+		return $this->hasMany(UserChangeLog::class, 'user_id', 'id');
 	}
 
 	/**
@@ -57,7 +57,17 @@ class User extends Authenticatable
 	 */
 	public function userServices()
 	{
-		return $this->hasMany('App\UserService', 'user_id', 'id');
+		return $this->hasMany(UserService::class, 'user_id', 'id');
+	}
+
+	/**
+	 * Link to related Items
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function items()
+	{
+		return $this->belongsToMany(Item::class)->using(ItemUser::class);
 	}
 
 	// End of Relationship
@@ -78,13 +88,13 @@ class User extends Authenticatable
 	}
 
 	/**
-	 * The last time that user uses the service
+	 * The last time that user uses the service @TODO
 	 *
 	 * @return \Illuminate\Contracts\Translation\Translator|string
 	 */
 	public function lastUsedTime()
 	{
-		if ($usedTrafficLog = $this->usedTrafficLogs()->first()->get()) {
+		if ($usedTrafficLog = $this->userServices()) {
 			return $usedTrafficLog->time;
 		}
 

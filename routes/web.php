@@ -34,7 +34,7 @@ Route::get('/tos', 'HomeController@showTos');
 Route::group(['middleware' => ['auth', 'active']], function () {
 
 	// 着陆页
-	Route::get('/dashboard', 'HomeController@index');
+	Route::get('/dashboard', ' HomeController@index');
 
 	// 节点信息
 	Route::group(['prefix' => 'node'], function () {

@@ -10,10 +10,12 @@
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     # Handle Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # SPA Config
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
-
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^api/* index.php [QSA,L]
+    RewriteRule ^ index.html [L]
+    
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

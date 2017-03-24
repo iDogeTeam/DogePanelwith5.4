@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNodeGroupTable extends Migration
+class CreateUserChangeLogs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateNodeGroupTable extends Migration
      */
     public function up()
     {
-	    Schema::create('node_groups', function (Blueprint $table) {
+	    Schema::create('user_change_logs', function (Blueprint $table) {
 		    $table->increments('id');
-		    $table->string('name');
-		    $table->string('description');
+		    $table->integer('source_id');
+		    $table->integer('source_type'); // Items, Checkin, etc
+		    $table->Integer('coin');
+		    $table->text('note')->nullable();  // Description
 		    $table->timestamps();
 	    });
     }
@@ -28,6 +30,6 @@ class CreateNodeGroupTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('node_groups');
+		Schema::dropIfExists('user_change_logs');
 	}
 }

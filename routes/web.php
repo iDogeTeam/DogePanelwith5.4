@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 			Route::get('/traffic', 'LogController@showIndividualTrafficInfo');
 			Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
 		});
-		
+
 		// 礼品码信息，暂不处理
 		Route::group(['prefix' => 'giftcode'], function () {
 			Route::get('/', 'GiftCodeController@index');

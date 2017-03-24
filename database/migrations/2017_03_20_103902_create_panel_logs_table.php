@@ -13,7 +13,7 @@ class CreatePanelLogsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('sp_log', function (Blueprint $table) {
+	    Schema::create('sp_logs', function (Blueprint $table) {
 		    $table->increments('id');
 		    $table->integer('user_id');
 		    $table->string('action');
@@ -29,6 +29,6 @@ class CreatePanelLogsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('sp_log');
+		Schema::dropIfExists('sp_logs');
 	}
 }

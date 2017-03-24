@@ -14,7 +14,7 @@ class CreateUserServicesTable extends Migration
     public function up()
     {
         //
-	    Schema::create('ss_user_services', function (Blueprint $table) {
+	    Schema::create('user_services', function (Blueprint $table) {
 		    $table->increments('id');
 		    $table->integer('user_id');
 		    $table->string('type'); // anyconnect or shadowsocks
@@ -22,8 +22,8 @@ class CreateUserServicesTable extends Migration
 	    	$table->string('password');
 		    $table->integet('port')->nullable();
 		    $table->string('method')->nullable();
-		    $table->integer('total_cost');
-		    $table->
+		    $table->integer('total_cost')->default(0);
+		    $table->json('total_amount'); // 记录服务各节点情况
 		    $table->timestamps();
 	    });
     }
@@ -35,7 +35,7 @@ class CreateUserServicesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('ss_user_services');
+		Schema::dropIfExists('user_services');
 	}
 
 }

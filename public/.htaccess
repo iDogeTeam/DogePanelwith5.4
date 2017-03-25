@@ -13,7 +13,9 @@
     # SPA Config
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^api/* index.php [QSA,L]
+    RewriteRule ^api/ index.php [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.html [L]
     
     # Handle Authorization Header

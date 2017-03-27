@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNodeInfosTable extends Migration
+class CreateNodesTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNodeInfosTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('ss_node', function (Blueprint $table) {
+		Schema::create('nodes', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name'); // node name
 			$table->string('type'); // extra section for further development
@@ -22,7 +22,7 @@ class CreateNodeInfosTable extends Migration
 			$table->string('ip_address');
 			$table->string('method')->default(NULL);
 			$table->string('custom_method')->nullable(); // Allow non-custsom
-			$table->text('info')->nullable();
+			$table->text('note')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -34,6 +34,6 @@ class CreateNodeInfosTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('ss_node');
+		Schema::dropIfExists('nodes');
 	}
 }

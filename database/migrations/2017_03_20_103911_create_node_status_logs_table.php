@@ -13,7 +13,7 @@ class CreateNodeLogsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('ss_node_status_log', function (Blueprint $table) {
+	    Schema::create('node_status_logs', function (Blueprint $table) {
 		    $table->increments('id');
 		    $table->integer('node_id');
 		    $table->float('uptime');
@@ -30,6 +30,6 @@ class CreateNodeLogsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('ss_node_status_log');
+		Schema::dropIfExists('node_status_logs');
 	}
 }

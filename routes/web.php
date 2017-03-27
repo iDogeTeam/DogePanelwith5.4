@@ -58,12 +58,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 			Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
 		});
 
-		// 邀请码信息,暂不处理
-		Route::group(['prefix' => 'invite'], function () {
-			Route::get('/', 'InviteController@showIndividualCode');
-			Route::post('/', 'InviteController@createIndividualCode');
-		});
-
 		// 礼品码信息，暂不处理
 		Route::group(['prefix' => 'giftcode'], function () {
 			Route::get('/', 'GiftCodeController@index');

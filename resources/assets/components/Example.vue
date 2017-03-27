@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <span class="demonstration">Do you like me?</span>
+        <span class="demonstration">{{ $t("example") }}</span>
         <el-rate
             v-model="value"
             :colors="['#99A9BF', '#F7BA2A', '#FF9900']">

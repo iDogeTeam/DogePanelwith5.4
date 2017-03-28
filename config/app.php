@@ -180,6 +180,7 @@ return [
 		 * External Provider
 		 */
 		browner12\helpers\HelperServiceProvider::class,
+		Laravoole\LaravooleServiceProvider::class,
 
 
 	],

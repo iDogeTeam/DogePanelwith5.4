@@ -1,11 +1,8 @@
 import Vue from 'vue'
-
+import app from './components/App'
 import VueRouter from 'vue-router'
-import Routes from './routes'
-
+import routes from './routes'
 import Element from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-
 import VueI18n from 'vue-i18n'
 import i18n from './i18n'
 
@@ -13,7 +10,7 @@ import i18n from './i18n'
 Vue.use(VueRouter)
 const router = new VueRouter({
     mode: 'history',
-    routes: Routes
+    routes: routes
 })
 
 // configure element-ui
@@ -30,5 +27,6 @@ for (let lang in i18n) {
 // init vue and mount vue instance to real dom
 new Vue({
     router,
-    render: h => h('router-view')
-}).$mount('#root')
+    el: '#root',
+    render: h => h(app)
+})

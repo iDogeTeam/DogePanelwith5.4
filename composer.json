@@ -11,7 +11,8 @@
         "garveen/laravoole": "^0.5.1",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "workerman/workerman": "^3.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.3",

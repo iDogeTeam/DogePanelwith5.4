@@ -27,10 +27,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        // WebSocket
-	    \Event::listen('laravoole.requesting', function ($request) {
-		    \Log::info($request->segments());
-	    });
-
+        //
     }
 }

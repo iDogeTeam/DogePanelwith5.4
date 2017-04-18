@@ -25,11 +25,12 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 返回将会按照如下格式：
 ```
 {
+    "status": 200,
     "timestamp": 1492444348,
     "interval": 1,
-
     "data": [
       {
+        "service_id": 1001,
         "port": 10001,
         "traffic": 2302030403,
         "method": "aes-256-cfb",
@@ -38,19 +39,21 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 
       {
       ...
-      }.
+      }
     ]
 }
 ```
+- `status` 状态码，默认`200`
 - `timestamp` Unix单位制，当前时间，`int`
 - `interval` 上传间隔时间，单位分钟，`int`
 - `Data` 包含的Shadowsocks服务数据
-  -  `port` 服务端口号，`int`
+  - `service_id` 服务序列号，`int`
+  - `port` 服务端口号，`int`
   - `traffic` 流量，按字节计算，`bigint`
   - `method` 加密方式，`string`
   - `enable` 是否启用，`boolean`
 
-#### `Blacklist` _(建议 Recommended)_
+#### `Get blacklist` _(建议 Recommended)_
 `blacklist` 不允许访问的地址/使用的协议，具体格式请参阅`其他/可选业务说明`获得详情
 **需要在启动时获取**
 
@@ -63,7 +66,7 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
     "timestamp": 1492444348,
     "data": [
       {
-        "port": 10001,
+        "service_id": 1001,
         "upload" : 2302,
         "download": 3203,
         "source_ip": [
@@ -80,12 +83,12 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 ```
 - `timestamp` Unix单位制，当前时间，`int`
 - `Data` 上报的Shadowsocks服务数据
-  -  `port` 服务端口号，`int`
+  - `service_id` 服务序列号，`int`
   - `upload` 上传流量，按字节计算，`bigint`
   - `download` 下载流量，按字节计算，`bigint`
   - `source_ip` 使用者IP，包含一个或多个IP地址，`JSON`封装一个数组
 
-返回数据格式如下：
+**正常返回数据格式如下：**
 ```
 {
     "status": 200,
@@ -93,6 +96,7 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
     "command": '',
     "data":[
       {
+        "service_id": 1001,
         "port": 10001,
         "traffic": 2302030403,
         "method": "aes-256-cfb",
@@ -105,16 +109,33 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
     ]
 }
 ```
-- `status` 状态码，如果并非`200`则认定此次上传不成功
+- `status` 状态码，如果并非`200`则认定此次上传不成功。获取到400则仅收集更新失败用户的流量信息并立即尝试重新上传。
 - `timestamp` Unix单位制，当前时间，`int`
 - `command` `服务器指令`，请移步`其他/可选业务说明`获取详情 _(可选 Optional)_
 - `interval` 上传间隔时间，单位分钟，`int`
 - `Data` 包含的Shadowsocks服务数据
-  -  `port` 服务端口号，`int`
+  - `service_id` 服务序列号，`int`
+  - `port` 服务端口号，`int`
   - `traffic` 流量，按字节计算，`bigint`
   - `method` 加密方式，`string`
   - `enable` 是否启用，`boolean`
-
+  
+**更新失败返回数据格式如下：**
+_注意，此处状态码为400_
+```
+{
+    "status": 400,
+    "timestamp": 1492507393,
+    "updated_users": [
+        1001,
+        1004,
+        ...
+    ]
+}
+```
+- `status` 状态码
+- `timestamp` Unix单位制，当前时间，`int`
+- `updated_users` 一个数组，包含更新成功的用户`服务序列号`
 ### 错误反馈
 
 - 通常来说，所有`Error`以上的错误都应该默认被反馈。（但是如果超出可控范围，例如进程和守护进程均被杀死，可能并不会返回）
@@ -127,7 +148,7 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
     "timestamp": 1492444348,
     "type": "Error"
     "exit": false
-    "data":[
+    "data": [
         "...",
         "Error: Port 10001: Failed to listen the port"
     ]

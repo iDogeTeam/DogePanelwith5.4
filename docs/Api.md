@@ -6,6 +6,12 @@
 - 全部`GET/POST`均使用`JSON`作为封装规范(除非另有说明)，`UTF-8`作为编码格式
 - 每一个节点的`token`均不一样，当节点服务器出现异常方便快速定位
 - **强烈建议使用`HTTPS`**
+- 状态码说明：
+一般返回的请求头里面会有对应的状态，但是正常情况(`Status : 200`)会在返回的数据中包含，以方便直接排除/过滤非正常情况（即最小化处理，只受理成功的回复，无法解析的直接丢弃）
+ - 404 找不到对应地址，通常是基本地址中`token`错误
+ - 500 服务器内部错误
+ - 200 成功处理
+ - 400 部分处理成功
 
 ## Shadowsocks 相关服务
 文档顺序按照程序执行顺序
@@ -19,22 +25,21 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 返回将会按照如下格式：
 ```
 {
-    - timestamp : 1492444348
-    - interval : 1
+    "timestamp": 1492444348,
+    "interval": 1,
 
-    - data :
-    {
+    "data": [
       {
-        - port : 10001
-        - traffic : 2302030403
-        - method : "aes-256-cfb"
-        - enable : true
-      }
+        "port": 10001,
+        "traffic": 2302030403,
+        "method": "aes-256-cfb",
+        "enable": true
+      },
 
       {
       ...
-      }
-    }
+      }.
+    ]
 }
 ```
 - `timestamp` Unix单位制，当前时间，`int`
@@ -55,24 +60,22 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 提交数据格式如下：
 ```
 {
-    - timestamp : 1492444348
-    - data :
-    {
+    "timestamp": 1492444348,
+    "data": [
       {
-        - port : 10001
-        - upload : 2302
-        - download : 3203
-        - source_ip :
-        {
-          127.0.0.1
+        "port": 10001,
+        "upload" : 2302,
+        "download": 3203,
+        "source_ip": [
+          "127.0.0.1",
           ...
-        }
-      }
+        ]
+      },
 
       {
       ...
-      }
-    }
+      },
+   ]
 }
 ```
 - `timestamp` Unix单位制，当前时间，`int`
@@ -85,22 +88,21 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 返回数据格式如下：
 ```
 {
-    - status : 200
-    - timestamp : 1492444348
-    - command : ''
-    - data :
-    {
+    "status": 200,
+    "timestamp": 1492444348,
+    "command": '',
+    "data":[
       {
-        - port : 10001
-        - traffic : 2302030403
-        - method : "aes-256-cfb"
-        - enable : true
-      }
+        "port": 10001,
+        "traffic": 2302030403,
+        "method": "aes-256-cfb",
+        "enable": true
+      },
 
       {
       ...
       }
-    }
+    ]
 }
 ```
 - `status` 状态码，如果并非`200`则认定此次上传不成功
@@ -122,14 +124,13 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 提交数据格式如下：
 ```
 {
-    - timestamp : 1492444348
-    - type : "Error"
-    - exit : false
-    - data :
-        '...
+    "timestamp": 1492444348,
+    "type": "Error"
+    "exit": false
+    "data":[
+        "...",
         "Error: Port 10001: Failed to listen the port"
-        '
-    }
+    ]
 }
 ```
 - `timestamp` Unix单位制，当前时间，`int`
@@ -139,10 +140,9 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 返回的数据格式如下
 ```
 {
-    - status : 200
-    - timestamp : 1492444348
-    - command : ''
-    }
+    "status": 200,
+    "timestamp": 1492444348,
+    "command" : '',
 }
 ```
 - `status` 状态码，如果并非`200`则认定此次上传不成功 (将日志保存在本地并以当前时间戳命名，可选）
@@ -156,20 +156,18 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
 以`JSON`封装，格式如下：
 ```
 {
-    - web :
-    {
+    "web": [
       "/(360.cn)/",
       "/116.76.1.1/"
       ...
-    }
-    - port :
-    {
+    ]
+    "port": [
       25,
       ...
-    }
+    ]
 }
 ```
-- `web` 部分包含一个或多个网页/IP，`string`
+- `web` 部分包含一个或多个网页/IP，`string`,正则表达
 - `port` 部分包含一个或多个端口，`int`
 
 #### `Command/服务器指令` 字段 _(可选 Optional)_

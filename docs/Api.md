@@ -109,13 +109,13 @@ Shadowsocks 服务需要在`基本地址`的基础上增加`shadowsocks/`
     ]
 }
 ```
-- `status` 状态码，如果并非`200`则认定此次上传不成功。获取到400则仅收集更新失败用户的流量信息并立即尝试重新上传。
+- `status` 状态码，如果并非`200`则认定此次上传不成功。获取到400则仅收集更新失败用户的流量信息并立即尝试重新上传。  
 - `timestamp` Unix单位制，当前时间，`int`
 - `command` `服务器指令`，请移步`其他/可选业务说明`获取详情 _(可选 Optional)_
-- `interval` 上传间隔时间，单位分钟，`int`
-- `Data` 包含的Shadowsocks服务数据
-  - `service_id` 服务序列号，`int`
-  - `port` 服务端口号，`int`
+- `interval` 上传间隔时间，单位分钟，`int`  
+- `Data` 包含的Shadowsocks服务数据  
+  - `service_id` 服务序列号，`int`
+  - `port` 服务端口号，`int`
   - `traffic` 流量，按字节计算，`bigint`
   - `method` 加密方式，`string`
   - `enable` 是否启用，`boolean`
@@ -136,6 +136,7 @@ _注意，此处状态码为400_
 - `status` 状态码
 - `timestamp` Unix单位制，当前时间，`int`
 - `updated_users` 一个数组，包含更新成功的用户`服务序列号`
+
 ### 错误反馈
 
 - 通常来说，所有`Error`以上的错误都应该默认被反馈。（但是如果超出可控范围，例如进程和守护进程均被杀死，可能并不会返回）
@@ -158,6 +159,7 @@ _注意，此处状态码为400_
 - `type` 错误等级，`string`
 - `exit` 是否退出，`false`意味着服务仍可继续运行，`boolean`
 - `Data` 错误日志，`text`
+
 返回的数据格式如下
 ```
 {

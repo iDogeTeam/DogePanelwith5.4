@@ -12,10 +12,11 @@
 export default {
     mounted () {
         console.log('Component mounted.')
+        console.log(this.$route.params)
     },
     data () {
         return {
-            value: null
+            value: 3
         }
     }
 }

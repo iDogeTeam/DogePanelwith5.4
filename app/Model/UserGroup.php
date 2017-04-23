@@ -9,5 +9,5 @@ class UserGroup extends Model
 	// Properties
 
 	protected $dateFormat = 'U';
-	
+
 }

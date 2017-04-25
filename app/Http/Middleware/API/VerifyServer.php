@@ -16,7 +16,9 @@ class VerifyServer
 	 */
 	public function handle($request, Closure $next)
 	{
-		Node::where('token', $request->token)->firstOrFail();
+		$node = Node::where('token', $request->token)->firstOrFail();
+
+		$request->merge(['node' => $node]);
 
 		return $next($request);
 	}

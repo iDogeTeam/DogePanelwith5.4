@@ -2,26 +2,27 @@
 
 namespace App\Services;
 
-use App\Repository\NodeRepository;
+use App\Node;
 
 class NodeService
 {
 
-	protected $nodeReposity;
-
-	public function __construct(NodeRepository $nodeRepository)
+	public function __construct()
 	{
-		$this->nodeReposity = $nodeRepository;
 	}
 
-	public function parseShadowsocksRelatedUsers($node)
+	public function parseShadowsocksRelatedServices($node)
 	{
-		$services = $node->map(function ($service) {
-				if ($service->type === 'shadowsocks') {
-
-					return $service;
-				}
-			});
+		return $services = $node->map(function ($service) {
+			if ($service->type === 'shadowsocks') {
+				$response['service_id'] = $service->id;
+				$response['port'] = $service->port;
+				$response['traffic'] = $service->traffic;
+				$response['method'] = $service->method;
+				$response['enable'] = $service->enable ? true : false;
+				return $response;
+			}
+		});
 	}
 
 }

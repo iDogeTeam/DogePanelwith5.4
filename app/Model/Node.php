@@ -31,4 +31,11 @@ class Node extends Model
 		return $this->hasMany(NodeStatus::class, 'node_id', 'id');
 	}
 
+	// Operation
+
+	public function getNodeServices()
+	{
+		return $this->nodeGroup()->services();
+	}
+
 }

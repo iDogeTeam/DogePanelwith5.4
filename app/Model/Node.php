@@ -20,7 +20,6 @@ class Node extends Model
 		return $this->belongsTo(NodeGroup::class, 'group_id', 'id');
 	}
 
-
 	/**
 	 * Link to node logs
 	 *
@@ -31,15 +30,4 @@ class Node extends Model
 		return $this->hasMany(NodeStatus::class, 'node_id', 'id');
 	}
 
-	// Operations
-
-	/**
-	 * Get all Services belong to certain nodes
-	 *
-	 * @return mixed
-	 */
-	public function userService()
-	{
-		return $this->nodeGroup()->services();
-	}
 }

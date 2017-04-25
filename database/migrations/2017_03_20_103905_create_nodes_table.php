@@ -16,7 +16,8 @@ class CreateNodesTable extends Migration
 		Schema::create('nodes', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name'); // node name
-			$table->string('type'); // extra section for further development
+			$table->string('type'); // service type
+			$table->string('token');
 			$table->integer('group_id');
 			$table->string('domain_name')->nullable(); // domain
 			$table->string('ip_address');

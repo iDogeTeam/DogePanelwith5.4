@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Node extends Model
 {
-	//
+	// Properties
 
+	protected $dateFormat = 'U';
 	// Relationships
 
 	/**
@@ -20,7 +21,6 @@ class Node extends Model
 		return $this->belongsTo(NodeGroup::class, 'group_id', 'id');
 	}
 
-
 	/**
 	 * Link to node logs
 	 *
@@ -31,15 +31,11 @@ class Node extends Model
 		return $this->hasMany(NodeStatus::class, 'node_id', 'id');
 	}
 
-	// Operations
+	// Operation
 
-	/**
-	 * Get all Services belong to certain nodes
-	 *
-	 * @return mixed
-	 */
-	public function userService()
+	public function getNodeServices()
 	{
 		return $this->nodeGroup()->services();
 	}
+
 }

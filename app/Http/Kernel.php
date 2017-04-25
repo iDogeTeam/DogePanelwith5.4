@@ -50,15 +50,16 @@ class Kernel extends HttpKernel
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth'       => \Illuminate\Auth\Middleware\Authenticate::class,
+		'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
 		'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-		'bindings'   => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-		'can'        => \Illuminate\Auth\Middleware\Authorize::class,
-		'guest'      => \App\Http\Middleware\RedirectIfAuthenticated::class,
-		'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'admin'      => \App\Http\Middleware\Admin\VerifyAdmin::class,
-		'active'     => \App\Http\Middleware\User\VerifyActive::class,
-		'mu'         => \App\Http\Middleware\API\VerifyMuKey::class,
+		'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+		'can' => \Illuminate\Auth\Middleware\Authorize::class,
+		'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+		'admin' => \App\Http\Middleware\Admin\VerifyAdmin::class,
+		'active' => \App\Http\Middleware\User\VerifyActive::class,
+		'mu' => \App\Http\Middleware\API\VerifyMuKey::class,
+		'server' => \App\Http\Middleware\API\VerifyServer::class,
 		'encode' => \App\Http\Middleware\EncodeJson::class,
 	];
 }

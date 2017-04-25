@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-// Webapi 相关
+// Deprecated Webapi 相关
 Route::group(['prefix' => 'mu', 'middleware' => 'mu'], function () {
 	Route::get('/users', 'API\Muv2Controller@userInfo');  // I don't get it.
 	Route::post('/users/{id}/traffic', 'API\Muv2Controller@addUserTraffic');
@@ -28,4 +28,15 @@ Route::group(['prefix' => 'mu', 'middleware' => 'mu'], function () {
 	 * $this->post('/nodes/{id}/info', 'App\Controllers\MuV2\NodeController:info');
 	 * $this->post('/nodes/{id}/traffic', 'App\Controllers\MuV2\NodeController:postTraffic');
 	 */
+});
+
+
+Route::group(['prefix' => 'server/{token}/', 'middleware' => 'server'], function () {
+	// Shadowsocks
+	Route::group(['prefix'=>'shadowsocks/', ], function ()
+	{
+		Route::get('user', 'API\ShadowsocksController@user');
+		Route::post('traffic','API\ShadowsocksController@traffic');
+		Route::post('error', 'API\ShadowsocksController@error');
+	});
 });

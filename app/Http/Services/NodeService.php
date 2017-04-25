@@ -14,11 +14,11 @@ class NodeService
 		$this->nodeReposity = $nodeRepository;
 	}
 
-	public function parseShadowsocksRelatedUsers($token)
+	public function parseShadowsocksRelatedUsers($node)
 	{
-		$services = $this->nodeReposity->getServices('token',$token)->map(function ($service) {
+		$services = $node->map(function ($service) {
 				if ($service->type === 'shadowsocks') {
-					
+
 					return $service;
 				}
 			});

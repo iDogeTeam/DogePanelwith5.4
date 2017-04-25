@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Node extends Model
 {
-	//
+	// Properties
 
+	protected $dateFormat = 'U';
 	// Relationships
 
 	/**

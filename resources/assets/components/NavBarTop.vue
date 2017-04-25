@@ -1,5 +1,5 @@
 <template>
-    <el-menu theme="dark" class="menu-demo" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+    <el-menu theme="light" class="menu-top" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1">Link 1</el-menu-item>
         <el-submenu index="2">
             <template slot="title">Link 2</template>
@@ -19,23 +19,19 @@
 <script>
 export default {
     data () {
-        return {
-            activeIndex: '1'
-        }
+        return {}
     },
     methods: {
         handleSelect (key, keyPath) {
             console.log(key, keyPath)
+            console.log(this.$i18n.locale)
         }
     }
 }
 </script>
 
 <style>
-.menu-demo > *{
-    float: right !important;
-}
-.menu-demo a{
-    text-decoration: none;
-}
+    .menu-top > * {
+        float: right !important;
+    }
 </style>

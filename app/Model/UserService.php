@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserService extends Model
 {
+	// Properties
+
+	protected $dateFormat = 'U';
+
 	/**
 	 * Table Name
 	 *
@@ -32,7 +36,7 @@ class UserService extends Model
 	 */
 	public function nodeGroup()
 	{
-		return $this->belongsTo(NodeGroup::class, 'group_id','id');
+		return $this->belongsTo(NodeGroup::class, 'group_id', 'id');
 	}
 
 	/**
@@ -42,9 +46,8 @@ class UserService extends Model
 	 */
 	public function user()
 	{
-		return $this->belongsTo(User::class,'user_id','id');
+		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
-
 
 
 	// Query

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class NodeGroup extends Model
 {
-	//
+	// Properties
+
+	protected $dateFormat = 'U';
 	/**
 	 * Table Name
 	 *

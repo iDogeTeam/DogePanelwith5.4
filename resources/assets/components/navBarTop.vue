@@ -19,7 +19,9 @@
 <script>
 export default {
     data () {
-        return {}
+        return {
+            activeIndex: '1'
+        }
     },
     methods: {
         handleSelect (key, keyPath) {

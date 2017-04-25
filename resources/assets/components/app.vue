@@ -1,34 +1,22 @@
 <template>
-    <el-row class="full-height">
-        <el-col :span="4" class="full-height">
-            <navBarLeft/>
-        </el-col>
-        <el-col :span="20">
-            <navBarTop/>
-            <router-view/>
-        </el-col>
-    </el-row>
+    <router-view/>
 </template>
 
 <script>
-import navBarTop from './NavBarTop'
-import navBarLeft from './NavBarLeft'
 import 'element-ui/lib/theme-default/index.css'
 import 'normalize.css'
-export default {
-    components: {
-        navBarTop,
-        navBarLeft
-    }
-}
+export default {}
 </script>
 
 <style>
-    html, body {
+    html,
+    body {
         margin: 0;
         padding: 0;
     }
-    html, body, .full-height {
+    html,
+    body,
+    .full-height {
         height: 100%;
     }
     body {
@@ -49,9 +37,12 @@ export default {
     a {
         text-decoration: none;
     }
-    .el-menu a {
-        display: block;
-        height:100%;
-        width:100%;
+    .logo {
+        width: 100%;
+        height: 2.2em;
+        line-height: 2.2em;
+        font-size: 1.6em;
+        color: white;
+        text-align: center;
     }
 </style>

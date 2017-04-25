@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Example from '@/components/Example'
 
-describe('Example.vue', () => {
+describe('example.vue', () => {
   it('should render correct contents', () => {
     const Constructor = Vue.extend(Example)
     const vm = new Constructor().$mount()

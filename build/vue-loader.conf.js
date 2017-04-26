@@ -1,12 +1,12 @@
-var utils = require('./utils')
-var config = require('../webpack-config')
-var isProduction = process.env.NODE_ENV === 'production'
+let utils = require('./utils')
+let config = require('../webpack-config')
+let isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  loaders: utils.cssLoaders({
-    sourceMap: isProduction
-      ? config.build.productionSourceMap
-      : config.dev.cssSourceMap,
-    extract: isProduction
-  })
+    loaders: utils.cssLoaders({
+        sourceMap: isProduction
+            ? config.build.productionSourceMap
+            : config.dev.cssSourceMap,
+        extract: isProduction
+    })
 }

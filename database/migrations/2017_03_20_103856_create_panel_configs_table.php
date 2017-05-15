@@ -17,7 +17,8 @@ class CreatePanelConfigsTable extends Migration
 			$table->increments('id');
 			$table->string('key');
 			$table->string('value');
-			$table->timestamps();
+			$table->integer('created_at');
+			$table->integer('updated_at');
 		});
 	}
 

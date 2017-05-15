@@ -19,7 +19,8 @@ class CreateNodeStatusLogsTable extends Migration
 		    $table->float('uptime');
 		    $table->string('load');
 		    $table->string('online_user');
-		    $table->timestamps();
+		    $table->integer('created_at');
+		    $table->integer('updated_at');
 	    });
     }
 

@@ -24,7 +24,8 @@ class CreateItemsTable extends Migration
 			$table->string('started_at');
 			$table->string('ended_at');
 			$table->string('note')->nullable();
-			$table->timestamps();
+			$table->integer('created_at');
+			$table->integer('updated_at');
 		});
 	}
 

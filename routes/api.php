@@ -33,10 +33,9 @@ Route::group(['prefix' => 'mu', 'middleware' => 'mu'], function () {
 
 Route::group(['prefix' => 'server/{token}/', 'middleware' => 'server'], function () {
 	// Shadowsocks
-	Route::group(['prefix'=>'shadowsocks/', ], function ()
-	{
+	Route::group(['prefix' => 'shadowsocks/',], function () {
 		Route::get('user', 'API\ShadowsocksController@user');
-		Route::post('traffic','API\ShadowsocksController@traffic');
+		Route::post('traffic', 'API\ShadowsocksController@traffic');
 		Route::post('error', 'API\ShadowsocksController@error');
 	});
 });

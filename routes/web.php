@@ -10,19 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes();
-
 /*
  * |   **注意**
  * | 以下为公开页面，请注意保护
  */
 
+// 着陆页
+Route::get('/', 'HomeController@index');
+
 // 附属条款
 Route::get('/tos', 'HomeController@showTos');
 
 // 验证路由
-
+Auth::routes();
 
 // **公开页面结束**
 
@@ -32,9 +32,6 @@ Route::get('/tos', 'HomeController@showTos');
 
 // 用户路由
 Route::group(['middleware' => ['auth', 'active']], function () {
-
-	// 着陆页
-	Route::get('/dashboard', ' HomeController@index');
 
 	// 节点信息
 	Route::group(['prefix' => 'node'], function () {
@@ -123,7 +120,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
 });
 
-// 错误页
-Route::get('/error/status', function () {
-	return view('status.account');
-})->name('status');

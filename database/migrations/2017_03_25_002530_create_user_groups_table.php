@@ -18,7 +18,8 @@ class CreateUserGroupsTable extends Migration
 			$table->string('name');
 			$table->decimal('rate')->default(1); // discount ?
 			$table->string('description');
-			$table->timestamps();
+			$table->integer('created_at');
+			$table->integer('updated_at');
 		});
 	}
 

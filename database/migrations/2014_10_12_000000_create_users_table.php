@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role')->default('user'); // user or admin
-	        $table->string('registration_date');
-	        $table->integer('group_id'); // Divide Users
+	        $table->integer('active_time')->nullable();
+	        $table->integer('group_id')->nullable(); // Divide Users
 	        $table->ipAddress('register_ip');
 	        $table->integer('ref_by')->nullable();
 	        $table->string('status')->default('pending'); // enable or disable or pending
@@ -28,14 +28,17 @@ class CreateUsersTable extends Migration
 
 	        //  Service related
 	        $table->bigInteger('coin')->default(env('INIT_COIN',1000));
-	        $table->integer('quota');
+	        $table->integer('quota')->default(env('MIN_COIN',100));
 
             // Communication tools related
 	        $table->string('telegram_token')->nullable();
             $table->integer('telegram_id')->nullable();
 
             $table->rememberToken();
-            $table->timestamps();
+	        // Timestamps
+            $table->integer('created_at');
+            $table->integer('updated_at');
+	        $table->softDeletes();
         });
     }
 

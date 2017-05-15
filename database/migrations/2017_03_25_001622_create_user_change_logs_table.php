@@ -19,7 +19,8 @@ class CreateUserChangeLogsTable extends Migration
 		    $table->integer('source_type'); // Items, Checkin, etc
 		    $table->Integer('coin');
 		    $table->text('note')->nullable();  // Description
-		    $table->timestamps();
+		    $table->integer('created_at');
+		    $table->integer('updated_at');
 	    });
     }
 

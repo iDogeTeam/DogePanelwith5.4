@@ -16,10 +16,10 @@ class VerifyActive
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (Auth::check() && Auth::user()->status != 'disable') {
+		if (Auth::check() && ($status = Auth::user()->status) === 'enable') {
 			return $next($request);
 		}
 
-		return redirect()->route('status');
+		return Response()->json(['code' => '422', 'status' => $status]);
 	}
 }

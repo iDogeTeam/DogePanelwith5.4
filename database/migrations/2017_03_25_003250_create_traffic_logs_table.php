@@ -20,7 +20,8 @@ class CreateTrafficLogsTable extends Migration
 			$table->bigInteger('upload');
 			$table->bigInteger('download');
 			$table->integer('record_time');
-			$table->timestamps();
+			$table->integer('created_at');
+			$table->integer('updated_at');
 		});
 	}
 

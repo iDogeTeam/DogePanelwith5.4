@@ -24,7 +24,8 @@ class CreateNodesTable extends Migration
 			$table->string('method')->default(NULL);
 			$table->string('custom_method')->nullable(); // Allow non-custsom
 			$table->text('note')->nullable();
-			$table->timestamps();
+			$table->integer('created_at');
+			$table->integer('updated_at');
 		});
 	}
 

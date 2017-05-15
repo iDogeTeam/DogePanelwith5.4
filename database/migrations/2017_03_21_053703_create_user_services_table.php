@@ -21,7 +21,7 @@ class CreateUserServicesTable extends Migration
 		    $table->string('type'); // anyconnect or shadowsocks
 		    $table->string('status')->default('enable'); // enable or disable
 	    	$table->string('password');
-		    $table->integet('port')->nullable();
+		    $table->integer('port')->nullable();
 		    $table->string('method')->nullable();
 		    $table->integer('total_cost')->default(0);
 		    $table->json('total_amount'); // 记录服务节点情况

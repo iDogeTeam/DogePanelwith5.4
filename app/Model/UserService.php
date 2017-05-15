@@ -56,4 +56,14 @@ class UserService extends Model
 	{
 		return $query->where('id', $Id)->firstOrFail();
 	}
+
+	// Action
+
+	public function updateServiceInformation($data)
+	{
+		if ($this->update($data->all())){
+			return true;
+		}
+		return false;
+	}
 }

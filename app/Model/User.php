@@ -135,45 +135,8 @@ class User extends Authenticatable
 		return true;
 	}
 
-	/**
-	 * Update user's specific service password
-	 *
-	 * @param $id
-	 * @param $password
-	 * @return bool
-	 */
-	public function updateServicePassword($id, $password)
-	{
-		if ($service = $this->userServices()->Id()) {
-			$service->password = $password;
-			$service->save();
 
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Update user's specific service method
-	 *
-	 * @param $id
-	 * @param $method
-	 * @return bool
-	 */
-	public function updateServiceMethod($id, $method)
-	{
-		if ($service = $this->userServices()->Id()) {
-			$service->method = $method;
-			$service->save();
-
-			return true;
-		}
-
-		return false;
-	}
-
-	// Judgement
+	// Judgement (boolean)
 
 	/**
 	 * Identify user's role
@@ -185,6 +148,11 @@ class User extends Authenticatable
 		return $this->attributes['role'] == 'admin' ? true : false;
 	}
 
+	/**
+	 * Checkin Checker
+	 *
+	 * @return bool
+	 */
 	public function isAbleToCheckIn()
 	{
 		if ($last = $this->lastCheckInTime()) {
@@ -195,65 +163,7 @@ class User extends Authenticatable
 
 			return false;
 		} else {
-			return true; // First time Register
+			return true; // Register
 		}
-	}
-
-	// @TODO 未完成
-	public function trafficUsagePercent()
-	{
-		$total = $this->attributes['u'] + $this->attributes['d'];
-		$transferEnable = $this->attributes['transfer_enable'];
-		if ($transferEnable == 0) {
-			return 0;
-		}
-		$percent = $total / $transferEnable;
-		$percent = round($percent, 2);
-		$percent = $percent * 100;
-
-		return $percent;
-	}
-
-	public function enableTraffic()
-	{
-		$transfer_enable = $this->attributes['transfer_enable'];
-
-		return Tools::flowAutoShow($transfer_enable);
-	}
-
-	public function enableTrafficInGB()
-	{
-		$transfer_enable = $this->attributes['transfer_enable'];
-
-		return Tools::flowToGB($transfer_enable);
-	}
-
-	public function usedTraffic()
-	{
-		$total = $this->attributes['u'] + $this->attributes['d'];
-
-		return Tools::flowAutoShow($total);
-	}
-
-	public function unusedTraffic()
-	{
-		$total = $this->attributes['u'] + $this->attributes['d'];
-		$transfer_enable = $this->attributes['transfer_enable'];
-
-		return Tools::flowAutoShow($transfer_enable - $total);
-	}
-
-	/*
-	 * @param traffic 单位 MB
-	 */
-	public function addTraffic($traffic)
-	{
-	}
-
-	public function inviteCodes()
-	{
-		$uid = $this->attributes['id'];
-
-		return InviteCode::where('user_id', $uid)->get();
 	}
 }

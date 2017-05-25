@@ -65,6 +65,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 		Route::get('/destroy', 'UserController@suicide');
 		Route::post('/destroy', 'UserController@suicide');
 
+		Route::post('/checkin','UserController@doUserCheckIn');
+
 	});
 
 	// 系统信息

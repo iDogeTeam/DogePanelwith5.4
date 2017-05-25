@@ -15,8 +15,8 @@ class CreateUserChangeLogsTable extends Migration
     {
 	    Schema::create('user_change_logs', function (Blueprint $table) {
 		    $table->increments('id');
-		    $table->integer('source_id');
-		    $table->integer('source_type'); // Items, Checkin, etc
+		    $table->integer('user_id');
+		    $table->string('source_type'); // Items, Checkin, etc
 		    $table->Integer('coin');
 		    $table->text('note')->nullable();  // Description
 		    $table->integer('created_at');

@@ -39,7 +39,7 @@ class User extends Authenticatable
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function userGroup()
+	public function group()
 	{
 		return $this->belongsTo(UserGroup::class, 'user_id', 'id');
 	}
@@ -49,7 +49,7 @@ class User extends Authenticatable
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function userChangeLog()
+	public function changeLogs()
 	{
 		return $this->hasMany(UserChangeLog::class, 'user_id', 'id');
 	}
@@ -59,7 +59,7 @@ class User extends Authenticatable
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function userServices()
+	public function services()
 	{
 		return $this->hasMany(UserService::class, 'user_id', 'id');
 	}
@@ -112,8 +112,8 @@ class User extends Authenticatable
 	 */
 	public function lastCheckInTime()
 	{
-		if ($trafficChangeLog = $this->trafficChangeLogs()->where('type', 'checkin')->first()->get()) {
-			return $trafficChangeLog->created_at;
+		if ($ChangeLog = $this->changeLogs()->where('source_type', 'CheckIn')->first()) {
+			return $ChangeLog->created_at;
 		}
 
 		return __('general.not_check_in_yet');

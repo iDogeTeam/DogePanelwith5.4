@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
 	        $table->string('status')->default('pending'); // enable or disable or pending
 	        $table->text('note')->nullable();
 
+	        // Level
+	        $table->BigInteger('exp')->default(1);
+
 	        //  Service related
 	        $table->bigInteger('coin')->default(env('INIT_COIN',1000));
 	        $table->integer('quota')->default(env('MIN_COIN',100));

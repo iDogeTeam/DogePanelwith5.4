@@ -53,7 +53,7 @@ class LoginController extends Controller
 	protected function authenticated(Request $request, $user)
 	{
 		//
-		return Response()->json(['code' => 200, 'status' => 'success']);
+		return formatter(200);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class LoginController extends Controller
 	 */
 	protected function sendFailedLoginResponse()
 	{
-		return response()->json(['status' => trans('auth.failed')], 422);
+		return formatter(400,__('auth.fail'));
 	}
 
 }

@@ -20,6 +20,6 @@ class VerifyActive
 			return $next($request);
 		}
 
-		return Response()->json(['code' => '422', 'status' => $status]);
+		return formatter(414, ['status' => $status]);
 	}
 }

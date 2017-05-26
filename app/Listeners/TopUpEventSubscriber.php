@@ -7,7 +7,7 @@ use App\UserChangeLog;
 class TopUpEventSubscriber
 {
 
-	public function addLog($event)
+	public function addTopUpLog($event)
 	{
 		$user = $event->user;
 
@@ -24,7 +24,7 @@ class TopUpEventSubscriber
 	{
 		$events->listen(
 			'App\Events\UserCheckIn',
-			'App\Listeners\TopUpEventSubscriber@addLog'
+			'App\Listeners\TopUpEventSubscriber@addTopUpLog'
 		);
 
 	}

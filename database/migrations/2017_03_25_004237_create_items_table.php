@@ -15,14 +15,14 @@ class CreateItemsTable extends Migration
 	{
 		Schema::create('items', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_id')->nullable();
+			$table->integer('user_id');
 			$table->string('type'); // inviteCode, giftCode
 			$table->integer('coin')->nullable();
 			$table->string('token');
 			$table->integer('used_times_limit')->default(1);
 			$table->integer('group_limit')->nullable();
-			$table->string('started_at');
-			$table->string('ended_at');
+			$table->string('started_at')->nullable();
+			$table->string('ended_at')->nullable();
 			$table->string('note')->nullable();
 			$table->integer('created_at');
 			$table->integer('updated_at');

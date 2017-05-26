@@ -19,7 +19,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'email', 'password', 'register_ip'
+		'name', 'email', 'password', 'register_ip',
 	];
 
 	/**
@@ -28,7 +28,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $hidden = [
-		'password', 'remember_token',
+		'password', 'remember_token','register_ip','note'
 	];
 
 
@@ -71,9 +71,13 @@ class User extends Authenticatable
 	 */
 	public function items()
 	{
-		return $this->belongsToMany(Item::class)->using(ItemUser::class);
+		return $this->hasMany(Item::class);
 	}
 
+	public function itemsLog()
+	{
+		return $this->hasMany(ItemLog::class);
+	}
 	// End of Relationship
 
 

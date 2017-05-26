@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemUser extends Model
+class ItemLog extends Model
 {
-    // Properties
+	// Properties
 
 	protected $dateFormat = 'U';
 }

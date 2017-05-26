@@ -12,6 +12,11 @@ class UserController extends Controller
 	{
 	}
 
+	public function showIndividual(Request $request)
+	{
+		return formatter(200,$request->user());
+	}
+
 	public function doUserCheckIn(Request $request)
 	{
 		if ($request->user()->isAbleToCheckIn()) {
@@ -19,10 +24,16 @@ class UserController extends Controller
 			shuffle($range);
 			event(new UserCheckIn($request->user(), $range[0]));
 
-			return Response()->json(['status' => 'success', 'amount' => $range[0]]);
+			return formatter(200, ['amount' => $range[0]]);
 		} else {
-			return Response()->json(['status' => 'failed', 'time' => $request->user()->lastCheckInTime()->timestamp]);
+			return formatter(413, ['content' => __('user.user_have_already_checked_in'),
+			                       'time'    => $request->user()->lastCheckInTime()->timestamp]);
 		}
 
+	}
+
+
+	public function test()
+	{
 	}
 }

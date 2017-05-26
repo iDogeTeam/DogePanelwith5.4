@@ -29,7 +29,7 @@ class RegisterController extends Controller
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/home';  // disabled
+	protected $redirectTo = '/';  // disabled
 
 	/**
 	 * Create a new controller instance.
@@ -103,6 +103,6 @@ class RegisterController extends Controller
 	protected function registered(Request $request, $user)
 	{
 		//
-		return Response()->json(['status' => 'success']);
+		return formatter(200);
 	}
 }

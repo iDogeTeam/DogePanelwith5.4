@@ -13,13 +13,23 @@ class EventServiceProvider extends ServiceProvider
 	 * @var array
 	 */
 	protected $listen = [
-		'App\Events\UserCheckIn' => [
+		'App\Events\UserCheckIn'      => [
 			'App\Listeners\UserCheckInCoins',
 		],
+		'App\Events\UserGetsInvite'   => [
+			'App\Listeners\InitiateUser',
+		],
+		'App\Events\CreateNewService' => [
+			'App\Listeners\SetUpService',
+		],
+		'App\Events\RedeemCode' => [
+			'App\Listeners\DistributeGift'
+		]
 	];
 
 	protected $subscribe = [
 		'App\Listeners\TopUpEventSubscriber',
+		'App\Listeners\ItemsEventSubscriber',
 	];
 
 	/**

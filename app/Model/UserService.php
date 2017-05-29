@@ -59,6 +59,11 @@ class UserService extends Model
 
 	// Action
 
+	public function isUserHasService($id)
+	{
+		return $this->user_id == $id;
+	}
+
 	public function updateServiceInformation($data)
 	{
 		if ($this->update($data->all())){

@@ -61,5 +61,7 @@ class Kernel extends HttpKernel
 		'mu' => \App\Http\Middleware\API\VerifyMuKey::class,
 		'server' => \App\Http\Middleware\API\VerifyServer::class,
 		'item' => \App\Http\Middleware\VerifyItems::class,
+		'belong.node' => \App\Http\Middleware\NodeBelongingCheck::class,
+		'belong.service' => \App\Http\Middleware\ServiceBelongingCheck::class,
 	];
 }

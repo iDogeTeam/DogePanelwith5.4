@@ -33,9 +33,4 @@ class Node extends Model
 
 	// Operation
 
-	public function getNodeServices()
-	{
-		return $this->nodeGroup()->services();
-	}
-
 }

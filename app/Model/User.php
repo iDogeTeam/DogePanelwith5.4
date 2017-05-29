@@ -28,7 +28,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $hidden = [
-		'password', 'remember_token','register_ip','note'
+		'password', 'remember_token', 'register_ip', 'note',
 	];
 
 
@@ -64,11 +64,8 @@ class User extends Authenticatable
 		return $this->hasMany(UserService::class, 'user_id', 'id');
 	}
 
-	/**
-	 * Link to related Items
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
+
+
 	public function items()
 	{
 		return $this->hasMany(Item::class);
@@ -141,6 +138,7 @@ class User extends Authenticatable
 
 
 	// Judgement (boolean)
+
 
 	/**
 	 * Identify user's role

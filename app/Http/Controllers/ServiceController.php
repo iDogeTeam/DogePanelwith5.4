@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class NodeController extends Controller
+class ServiceController extends Controller
 {
     //
 	public function __construct()
 	{
 	}
 
-	public function listAllNodes(){
+	public function listAllService(){
 
 	}
 
-	public function showIndividualNode(){
-
+	public function showIndividualService(){
+		
 	}
 }

@@ -38,11 +38,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 正式用户路由
 	Route::group(['middleware' => 'active'], function () {
+		// 服务信息
+		Route::get('test', 'UserController@test');
+
+		Route::group(['prefix' => 'service','middleware' => 'belong.service'], function () {
+			Route::get('/', 'ServiceController@listAllServices');
+			Route::get('/{id}','ServiceController@showIndividualService');
+		});
+
 		// 节点信息
-		Route::get('test','UserController@test');
-		Route::group(['prefix' => 'node'], function () {
-			Route::get('/', 'NodeController@index');
-			Route::get('/{id}', 'NodeController@showIndividual');
+		Route::group(['prefix' => 'node', 'middleware' => 'belong.node'], function () {
+			Route::get('/', 'NodeController@listAllNodes');
+			Route::get('/{id}', 'NodeController@showIndividualNodes');
 		});
 
 		// 用户信息

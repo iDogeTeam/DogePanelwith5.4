@@ -14,13 +14,19 @@
 </template>
 
 <script>
-export default {
-    data () {
-        return {
-            activeIndex: location.pathname.split('/', 3).join('/')
+    import ElMenu from 'element-ui/packages/menu/src/menu'
+    import ElMenuItem from 'element-ui/packages/menu/src/menu-item'
+    export default {
+        components: {
+            ElMenuItem,
+            ElMenu
+        },
+        data () {
+            return {
+                activeIndex: location.pathname.split('/', 3).join('/')
+            }
         }
     }
-}
 </script>
 
 <style lang="scss">

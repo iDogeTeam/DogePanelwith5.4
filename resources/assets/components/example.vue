@@ -11,7 +11,9 @@
 
 <script>
     import _ from 'lodash'
+    import ElRate from 'element-ui/packages/rate/src/main'
     export default {
+        components: {ElRate},
         data () {
             return {
                 value: _.random(0, 5)

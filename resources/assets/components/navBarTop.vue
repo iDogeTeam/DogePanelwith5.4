@@ -17,19 +17,27 @@
 </template>
 
 <script>
-export default {
-    data () {
-        return {
-            activeIndex: '1'
-        }
-    },
-    methods: {
-        handleSelect (key, keyPath) {
-            console.log(key, keyPath)
-            console.log(this.$i18n.locale)
+    import ElMenu from 'element-ui/packages/menu/src/menu'
+    import ElMenuItem from 'element-ui/packages/menu/src/menu-item'
+    import ElSubmenu from 'element-ui/packages/menu/src/submenu'
+    export default {
+        components: {
+            ElSubmenu,
+            ElMenuItem,
+            ElMenu
+        },
+        data () {
+            return {
+                activeIndex: '1'
+            }
+        },
+        methods: {
+            handleSelect (key, keyPath) {
+                console.log(key, keyPath)
+                console.log(this.$i18n.locale)
+            }
         }
     }
-}
 </script>
 
 <style>

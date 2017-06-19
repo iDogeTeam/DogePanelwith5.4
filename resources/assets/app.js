@@ -2,7 +2,6 @@ import Vue from 'vue'
 import app from './components/app'
 import VueRouter from 'vue-router'
 import routes from './route'
-import Element from 'element-ui'
 import VueI18n from 'vue-i18n'
 import messages from './i18n'
 import {locale, fallbackLocale, routerMode} from './config'
@@ -13,9 +12,6 @@ const router = new VueRouter({
     mode: routerMode,
     routes
 })
-
-// configure element-ui
-Vue.use(Element)
 
 // configure vue-i18n
 Vue.use(VueI18n)

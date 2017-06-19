@@ -14,7 +14,13 @@
 </template>
 
 <script>
+    import ElMenu from 'element-ui/packages/menu/src/menu'
+    import ElMenuItem from 'element-ui/packages/menu/src/menu-item'
     export default {
+        components: {
+            ElMenuItem,
+            ElMenu
+        },
         data () {
             return {
                 activeIndex: location.pathname.split('/', 3).join('/')

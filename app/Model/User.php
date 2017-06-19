@@ -65,7 +65,6 @@ class User extends Authenticatable
 	}
 
 
-
 	public function items()
 	{
 		return $this->hasMany(Item::class);
@@ -136,6 +135,19 @@ class User extends Authenticatable
 		return true;
 	}
 
+	public function listAllServiceID()
+	{
+		return $this->services()->map(function ($service) {
+			return $service->id;
+		})->flatten()->toArray();
+	}
+
+	public function listAllNodeGroupID()
+	{
+		return $this->services()->map(function ($service){
+			$service->nodeGroup()->first()->id;  // It used to be belonging relationship, but first method keep things smoothly..
+		});
+	}
 
 	// Judgement (boolean)
 

@@ -6,16 +6,25 @@ use Illuminate\Http\Request;
 
 class NodeController extends Controller
 {
-    //
-	public function __construct()
+	//
+
+	public $user;
+	public $request;
+
+	public function __construct(Request $r)
 	{
+		$user = $r->user();
+		$request = $r;
 	}
 
-	public function listAllNodes(){
-
+	public function listAllNodesWithinAService()
+	{
+		return dataFormatter($this->request->service->nodegroup()->all());
 	}
 
-	public function showIndividualNode(){
+	public function showIndividualNode()
+	{
+		return dataFormatter($this->request->)
 
 	}
 }

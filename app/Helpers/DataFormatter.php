@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('formatter')) {
+if (!function_exists('dataFormatter')) {
 
 	/**
 	 * description
@@ -8,8 +8,10 @@ if (!function_exists('formatter')) {
 	 * @param
 	 * @return
 	 */
-	function formatter($code = 200, $message = 'success', $data = NULL)
+	function dataFormatter($data, $code = 200, $message = NULL)
 	{
+		if (empty($message)) $message = __('general.success');
+
 		return response()
 			->json([
 				'code'    => $code,

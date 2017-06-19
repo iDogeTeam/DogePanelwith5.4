@@ -39,54 +39,59 @@ Route::group(['middleware' => 'auth'], function () {
 	// 正式用户路由
 	Route::group(['middleware' => 'active'], function () {
 		// 服务信息
+
+		// @TODO 测试条目
 		Route::get('test', 'UserController@test');
 
-		Route::group(['prefix' => 'service','middleware' => 'belong.service'], function () {
+		Route::group(['prefix' => 'service', 'middleware' => 'belong.service'], function () {
 			Route::get('/', 'ServiceController@listAllServices');
-			Route::get('/{id}','ServiceController@showIndividualService');
-		});
-
-		// 节点信息
-		Route::group(['prefix' => 'node', 'middleware' => 'belong.node'], function () {
-			Route::get('/', 'NodeController@listAllNodes');
-			Route::get('/{id}', 'NodeController@showIndividualNodes');
-		});
-
-		// 用户信息
-		Route::group(['prefix' => 'user'], function () {
-
-			// 用户档案
-			Route::group(['prefix' => 'profile'], function () {
-				Route::get('/', 'UserController@showIndividual');
-				Route::get('/edit', 'UserController@editIndividualInfo');
-				Route::post('/edit', 'UserController@editIndividualInfo');
+			Route::group(['prefix' => '/{sid}'], function () {
+				Route::get('/', 'ServiceController@showIndividualService');
+				Route::group(['prefix' => ' node'], function () {
+					// 节点信息
+					Route::get('/', 'NodeController@listAllNodesWithinAService');
+					Route::get('/{nid}', 'NodeController@showIndividualNodes');
+				});
 			});
-
-			// 流量信息
-			Route::group(['prefix' => 'log'], function () {
-				Route::get('/', 'LogController@index');
-				Route::get('/traffic', 'LogController@showIndividualTrafficInfo');
-				Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
-			});
-
-			// 礼品码信息，暂不处理
-			/*Route::group(['prefix' => 'giftcode'], function () {
-				Route::get('/', 'GiftCodeController@index');
-				Route::post('/', 'GiftCodeController@createIndividualCode');
-			});*/
-
-			// 销毁
-			Route::get('/destroy', 'UserController@suicide');
-			Route::post('/destroy', 'UserController@suicide');
-
-			Route::post('/checkin', 'UserController@doUserCheckIn');
-
 		});
-
-		// 系统信息
-		Route::get('/system', 'HomeController@gist');
 
 	});
+
+	// 用户信息
+	Route::group(['prefix' => 'user'], function () {
+
+		// 用户档案
+		Route::group(['prefix' => 'profile'], function () {
+			Route::get('/', 'UserController@showIndividual');
+			Route::get('/edit', 'UserController@editIndividualInfo');
+			Route::post('/edit', 'UserController@editIndividualInfo');
+		});
+
+		// 流量信息
+		Route::group(['prefix' => 'log'], function () {
+			Route::get('/', 'LogController@index');
+			Route::get('/traffic', 'LogController@showIndividualTrafficInfo');
+			Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
+		});
+
+		// 礼品码信息，暂不处理
+		/*Route::group(['prefix' => 'giftcode'], function () {
+			Route::get('/', 'GiftCodeController@index');
+			Route::post('/', 'GiftCodeController@createIndividualCode');
+		});*/
+
+		// 销毁
+		Route::get('/destroy', 'UserController@suicide');
+		Route::post('/destroy', 'UserController@suicide');
+
+		Route::post('/checkin', 'UserController@doUserCheckIn');
+
+	});
+
+	// 系统信息
+	Route::get('/system', 'HomeController@gist');
+
+});
 });
 
 

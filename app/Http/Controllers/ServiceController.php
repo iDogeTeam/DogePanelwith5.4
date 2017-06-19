@@ -6,16 +6,24 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    //
-	public function __construct()
+	//
+
+	public $user;
+	public $request;
+
+	public function __construct(Request $r)
 	{
+		$user = $r->user();
+		$request = $r;
 	}
 
-	public function listAllService(){
-
+	public function listAllService()
+	{
+		return dataFormatter($this->user->services()->all());
 	}
 
-	public function showIndividualService(){
-
+	public function showIndividualService()
+	{
+		return dataFormatter($this->user->services()->where('id', $this->request->sid)->firstorFail());
 	}
 }

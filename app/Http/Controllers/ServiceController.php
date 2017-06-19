@@ -16,6 +16,6 @@ class ServiceController extends Controller
 	}
 
 	public function showIndividualService(){
-		
+
 	}
 }

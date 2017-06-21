@@ -26,7 +26,7 @@ class UserService extends Model
 	 */
 	public function trafficLog()
 	{
-		return $this->hasMany(TrafficLog::class);
+		return $this->hasMany(TrafficLog::class,'service_id','id');
 	}
 
 	/**

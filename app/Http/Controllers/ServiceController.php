@@ -24,6 +24,6 @@ class ServiceController extends Controller
 
 	public function showIndividualService()
 	{
-		return dataFormatter($this->user->services()->where('id', $this->request->sid)->firstorFail());
+		return dataFormatter($this->request->currentServiceModel);
 	}
 }

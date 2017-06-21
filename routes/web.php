@@ -43,14 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
 		// @TODO 测试条目
 		Route::get('test', 'UserController@test');
 
+		// 服务信息
 		Route::group(['prefix' => 'service', 'middleware' => 'belong.service'], function () {
 			Route::get('/', 'ServiceController@listAllServices');
 			Route::group(['prefix' => '/{sid}'], function () {
 				Route::get('/', 'ServiceController@showIndividualService');
-				Route::group(['prefix' => ' node'], function () {
+				Route::group(['prefix' => 'node'], function () {
 					// 节点信息
 					Route::get('/', 'NodeController@listAllNodesWithinAService');
-					Route::get('/{nid}', 'NodeController@showIndividualNodes');
+					Route::get('/{nid}', 'NodeController@showIndividualNodes')->middleware('belong.node');
 				});
 			});
 		});
@@ -91,7 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
 	// 系统信息
 	Route::get('/system', 'HomeController@gist');
 
-});
 });
 
 

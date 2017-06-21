@@ -21,11 +21,12 @@ class ServiceBelongingCheck
 		}
 
 		if ($service->isUserHasService($request->user()->id)) {
-			$request->merge(['service' => $service]);
+			$request->merge(['currentServiceModel' => $service]);
+
 			return $next($request);
 		}
 
-		return formatter(403,__('service.service_does_not_belong_to_user'));
+		return formatter(403, __('service.service_does_not_belong_to_user'));
 
 	}
 }

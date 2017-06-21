@@ -14,11 +14,11 @@ class Node extends Model
 	/**
 	 * Link to nodeGroup
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function nodeGroups()
+	public function nodeGroup()
 	{
-		return $this->hasMany(NodeGroup::class, 'group_id', 'id');
+		return $this->belongsTo(NodeGroup::class, 'group_id', 'id');
 	}
 
 	/**
@@ -33,10 +33,10 @@ class Node extends Model
 
 	// Operation
 
-	public function allBelongingGroups(){
-		return $this->nodeGroups()->map(function ($nodeGroups){
-			return $nodeGroups->id;
-		})->flatten()->toArray();
+	// Judgement
+	public function isNodeBelongedToUser($userId)
+	{
+		return !empty($this->nodeGroup()->services()->where('user_id', $userId)->first());
 	}
 
 }

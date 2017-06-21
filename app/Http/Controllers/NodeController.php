@@ -19,12 +19,11 @@ class NodeController extends Controller
 
 	public function listAllNodesWithinAService()
 	{
-		return dataFormatter($this->request->service->nodegroup()->all());
+		return dataFormatter($this->request->currentServiceModel->nodegroup()->nodes()->all());
 	}
 
 	public function showIndividualNode()
 	{
-		return dataFormatter($this->request->)
-
+		return dataFormatter($this->request->currentNodeModel);
 	}
 }

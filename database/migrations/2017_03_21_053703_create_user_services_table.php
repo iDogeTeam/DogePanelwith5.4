@@ -24,7 +24,6 @@ class CreateUserServicesTable extends Migration
 		    $table->integer('port')->nullable();
 		    $table->string('method')->nullable();
 		    $table->integer('total_cost')->default(0);
-		    $table->json('total_amount'); // 记录服务节点情况
 		    $table->integer('created_at');
 		    $table->integer('updated_at');
 	    });

@@ -38,3 +38,26 @@ $factory->define(App\UserService::class, function (Faker\Generator $faker){
 		'method' => 'aes-256-cfb',
 	];
 });
+
+// Node
+$factory->define(App\Node::class, function (Faker\Generator $faker){
+	static $group_id;
+
+	return [
+		'name' => $faker->name,
+		'type' => 'shadowsocks',
+		'group_id' => $group_id ?: $faker->shuffle(range(1,10))[0],
+		'token' => str_random(10),
+		'ip_address' => $faker->ipv4,
+	];
+});
+
+// Node
+$factory->define(App\NodeGroup::class, function (Faker\Generator $faker){
+	static $group_id;
+
+	return [
+		'name' => $faker->name,
+		'description' => $faker->paragraphs[0],
+	];
+});

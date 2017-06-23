@@ -44,9 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('test', 'UserController@test');
 
 		// 服务信息
-		Route::group(['prefix' => 'service', 'middleware' => 'belong.service'], function () {
+		Route::group(['prefix' => 'service'], function () {
 			Route::get('/', 'ServiceController@listAllServices');
-			Route::group(['prefix' => '/{sid}'], function () {
+			Route::group(['prefix' => '/{sid}', 'middleware' => 'belong.service'], function () {
 				Route::get('/', 'ServiceController@showIndividualService');
 				Route::group(['prefix' => 'node'], function () {
 					// 节点信息

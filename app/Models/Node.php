@@ -36,7 +36,7 @@ class Node extends Model
 	// Judgement
 	public function isNodeBelongedToUser($userId)
 	{
-		return !empty($this->nodeGroup()->services()->where('user_id', $userId)->first());
+		return !empty($this->nodeGroup()->getRelated()->services()->get()->where('user_id', $userId)->first());
 	}
 
 }

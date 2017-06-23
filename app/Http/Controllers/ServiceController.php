@@ -17,7 +17,7 @@ class ServiceController extends Controller
 		$request = $r;
 	}
 
-	public function listAllService()
+	public function listAllServices()
 	{
 		return dataFormatter($this->user->services()->all());
 	}

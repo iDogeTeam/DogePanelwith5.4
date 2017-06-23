@@ -13,8 +13,8 @@ class ServiceController extends Controller
 
 	public function __construct(Request $r)
 	{
-		$user = $r->user();
-		$request = $r;
+		$this->user = $r->user();
+		$this->request = $r;
 	}
 
 	public function listAllServices()

@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
 	// 着陆页
-	Route::get('/dashboard', 'Admin\HomeController@index');
+	//Route::get('/dashboard', 'Admin\HomeController@index');
 
 	// 面板信息
 

@@ -24,7 +24,7 @@ class UserService extends Model
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function trafficLog()
+	public function trafficLogs()
 	{
 		return $this->hasMany(TrafficLog::class,'service_id','id');
 	}

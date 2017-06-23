@@ -67,8 +67,8 @@ $factory->define(App\TrafficLog::class, function (Faker\Generator $faker) {
 	static $node_id;
 
 	return [
-		'service_id'  => $service_id ? : $faker->shuffle(range(1, 10))[0],
-		'node_id' => $node_id ? : $faker->shuffle(range(1, 10))[0],
+		'service_id'  => $service_id ? : $faker->shuffle(range(1, 100))[0],
+		'node_id' => $node_id ? : $faker->shuffle(range(1, 100))[0],
 		'download' => $faker->numberBetween(1000,10000),
 		'upload' => $faker->numberBetween(1000,10000),
 	];
@@ -81,8 +81,8 @@ $factory->define(App\ItemLog::class, function (Faker\Generator $faker) {
 	static $item_id;
 
 	return [
-		'user_id'  => $user_id ? : $faker->shuffle(range(1, 10))[0],
-		'item_id'  => $item_id ? : $faker->shuffle(range(1, 10))[0],
+		'user_id'  => $user_id ? : $faker->shuffle(range(1, 100))[0],
+		'item_id'  => $item_id ? : $faker->shuffle(range(1, 100))[0],
 		'action' => $faker->boolean(10) ? 'create' : 'used',
 	];
 });

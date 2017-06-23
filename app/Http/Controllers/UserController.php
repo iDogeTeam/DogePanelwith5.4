@@ -14,7 +14,7 @@ class UserController extends Controller
 
 	public function showIndividual(Request $request)
 	{
-		return formatter(200,$request->user());
+		return dataformatter($request->user());
 	}
 
 	public function doUserCheckIn(Request $request)

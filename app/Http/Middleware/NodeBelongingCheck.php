@@ -20,7 +20,7 @@ class NodeBelongingCheck
 			return formatter(404, __('node.node_no_found'));
 		}
 
-		if ($node->isNodeBelongedToUser($request->user()->id)) {
+		if ($request->currentServiceModel->NodeGroup()->first()->nodes()->where('id',$request->nid)->first()) {
 			$request->merge(['currentNodeModel' => $node]);
 
 			return $next($request);

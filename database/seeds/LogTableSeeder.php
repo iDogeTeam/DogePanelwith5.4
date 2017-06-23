@@ -12,7 +12,7 @@ class LogTableSeeder extends Seeder
     public function run()
     {
         //
-		factory(App\TrafficLog::class,100)->create();
-		factory(App\ItemLog::class,100)->create();
+		factory(App\TrafficLog::class,5000)->create();
+		factory(App\ItemLog::class,5000)->create();
     }
 }

@@ -21,6 +21,11 @@ class Node extends Model
 		return $this->belongsTo(NodeGroup::class, 'group_id', 'id');
 	}
 
+	public function trafficLogs()
+	{
+		return $this->hasMany(TrafficLog::class, 'node_id', 'id');
+	}
+
 	/**
 	 * Link to node logs
 	 *

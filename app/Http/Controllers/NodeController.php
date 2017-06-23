@@ -7,23 +7,23 @@ use Illuminate\Http\Request;
 class NodeController extends Controller
 {
 	//
-
-	public $user;
-	public $request;
-
-	public function __construct(Request $r)
+	public function __construct()
 	{
-		$this->user = $r->user();
-		$this->request = $r;
 	}
 
-	public function listAllNodesWithinAService()
+	public function listAllNodesWithinAService(Request $request)
 	{
-		return dataFormatter($this->request->currentServiceModel->nodegroup()->nodes()->all());
+		return dataFormatter($request->currentServiceModel->nodegroup()->first()->nodes()->get());
 	}
 
-	public function showIndividualNode()
+	public function showIndividualNode(Request $request)
 	{
-		return dataFormatter($this->request->currentNodeModel);
+		return dataFormatter($request->currentNodeModel);
 	}
+
+	public function showIndividualNodeTrafficWithinAService(Request $request)
+	{
+		return dataFormatter($request->currentNodeModel->trafficLogs()->where('service_id', $request->currentServiceModel->id)->take(empty($request->num) ? 20 : $request->num)->get());
+	}
+
 }

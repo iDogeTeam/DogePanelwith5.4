@@ -8,22 +8,22 @@ class ServiceController extends Controller
 {
 	//
 
-	public $user;
-	public $request;
-
-	public function __construct(Request $r)
+	public function __construct()
 	{
-		$this->user = $r->user();
-		$this->request = $r;
 	}
 
-	public function listAllServices()
+	public function listAllServices(Request $request)
 	{
-		return dataFormatter($this->user->services()->all());
+		return dataFormatter($request->user()->services()->get());
 	}
 
-	public function showIndividualService()
+	public function showIndividualService(Request $request)
 	{
-		return dataFormatter($this->request->currentServiceModel);
+		return dataFormatter($request->currentServiceModel);
+	}
+
+	public function showIndividualServiceRecentTrafficLog(Request $request)
+	{
+		return dataFormatter($request->currentServiceModel->trafficLogs()->take(empty($request->num) ? 20 : $request->num)->get());
 	}
 }

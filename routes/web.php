@@ -30,7 +30,6 @@ Auth::routes();
  * | **内部路由开始**
  */
 
-
 Route::group(['middleware' => 'auth'], function () {
 
 	// 验证用户路由
@@ -38,20 +37,20 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 正式用户路由
 	Route::group(['middleware' => 'active'], function () {
-		// 服务信息
-
-		// @TODO 测试条目
-		Route::get('test', 'UserController@test');
 
 		// 服务信息
 		Route::group(['prefix' => 'service'], function () {
 			Route::get('/', 'ServiceController@listAllServices');
 			Route::group(['prefix' => '/{sid}', 'middleware' => 'belong.service'], function () {
 				Route::get('/', 'ServiceController@showIndividualService');
+				Route::get('/traffic/{num?}', 'ServiceController@showIndividualServiceRecentTrafficLog');
+				// 节点信息
 				Route::group(['prefix' => 'node'], function () {
-					// 节点信息
 					Route::get('/', 'NodeController@listAllNodesWithinAService');
-					Route::get('/{nid}', 'NodeController@showIndividualNodes')->middleware('belong.node');
+					Route::group(['prefix' => '/{nid}', 'middleware' => 'belong.node'], function () {
+						Route::get('/', 'NodeController@showIndividualNode');
+						Route::get('/traffic/{num?}', 'NodeController@showIndividualNodeTrafficWithinAService');
+					});
 				});
 			});
 		});
@@ -64,7 +63,6 @@ Route::group(['middleware' => 'auth'], function () {
 		// 用户档案
 		Route::group(['prefix' => 'profile'], function () {
 			Route::get('/', 'UserController@showIndividual');
-			Route::get('/edit', 'UserController@editIndividualInfo');
 			Route::post('/edit', 'UserController@editIndividualInfo');
 		});
 

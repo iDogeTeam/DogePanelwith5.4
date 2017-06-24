@@ -20,9 +20,8 @@ class CreateNodesTable extends Migration
 			$table->string('token');
 			$table->integer('group_id');
 			$table->string('domain_name')->nullable(); // domain
-			$table->string('ip_address');
-			$table->string('method')->default(NULL);
-			$table->string('custom_method')->nullable(); // Allow non-custsom
+			$table->ipAddress('ip_address');
+			$table->string('method')->nullable(); // Null Means allow any.
 			$table->text('note')->nullable();
 			$table->integer('created_at');
 			$table->integer('updated_at');

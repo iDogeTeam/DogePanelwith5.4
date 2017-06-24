@@ -18,13 +18,13 @@ class CreateUserServicesTable extends Migration
 		    $table->increments('id');
 		    $table->integer('user_id');
 		    $table->integer('group_id'); // NodeGroup
-		    $table->string('type'); // anyconnect or shadowsocks
+		    $table->string('type'); // anygitconnect or shadowsocks
 		    $table->string('status')->default('enable'); // enable or disable
 	    	$table->string('password');
 		    $table->integer('port')->nullable();
 		    $table->string('method')->nullable();
-		    $table->integer('total_cost')->default(0);
-		    $table->json('total_amount'); // 记录服务节点情况
+		    $table->double('total_cost')->default(0);
+		    $table->double('temp_cost')->default(0);
 		    $table->integer('created_at');
 		    $table->integer('updated_at');
 	    });

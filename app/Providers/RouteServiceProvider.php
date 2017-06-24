@@ -24,8 +24,8 @@ class RouteServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		// ID Limits
-		Route::pattern('id', '[0-9]+');
-
+		Route::pattern('sid', '[0-9]+');
+		Route::pattern('nid', '[0-9]+');
 		parent::boot();
 	}
 
@@ -53,6 +53,7 @@ class RouteServiceProvider extends ServiceProvider
 	protected function mapWebRoutes()
 	{
 		Route::middleware('web')
+			->prefix('api')
 			->namespace($this->namespace)
 			->group(base_path('routes/web.php'));
 	}
@@ -66,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	protected function mapApiRoutes()
 	{
-		Route::prefix('backend')
+		Route::prefix('server')
 			->middleware('api')
 			->namespace($this->namespace)
 			->group(base_path('routes/api.php'));

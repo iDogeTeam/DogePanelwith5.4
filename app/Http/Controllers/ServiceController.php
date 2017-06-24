@@ -6,16 +6,24 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    //
+	//
+
 	public function __construct()
 	{
 	}
 
-	public function listAllService(){
-
+	public function listAllServices(Request $request)
+	{
+		return dataFormatter($request->user()->services()->get());
 	}
 
-	public function showIndividualService(){
+	public function showIndividualService(Request $request)
+	{
+		return dataFormatter($request->currentServiceModel);
+	}
 
+	public function showIndividualServiceRecentTrafficLog(Request $request)
+	{
+		return dataFormatter($request->currentServiceModel->trafficLogs()->take(empty($request->num) ? 20 : $request->num)->get());
 	}
 }

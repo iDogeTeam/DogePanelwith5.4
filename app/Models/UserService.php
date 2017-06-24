@@ -24,9 +24,9 @@ class UserService extends Model
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function trafficLog()
+	public function trafficLogs()
 	{
-		return $this->hasMany(TrafficLog::class);
+		return $this->hasMany(TrafficLog::class, 'service_id', 'id');
 	}
 
 	/**
@@ -49,6 +49,16 @@ class UserService extends Model
 		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
 
+	// Attribute
+
+	public function getStatusAttribute($status)
+	{
+		if ($this->user()->getRelated()->traffic_enable !== '1') {
+			return false;
+		}
+
+		return $status;
+	}
 
 	// Query
 
@@ -66,9 +76,10 @@ class UserService extends Model
 
 	public function updateServiceInformation($data)
 	{
-		if ($this->update($data->all())){
+		if ($this->update($data->all())) {
 			return true;
 		}
+
 		return false;
 	}
 }

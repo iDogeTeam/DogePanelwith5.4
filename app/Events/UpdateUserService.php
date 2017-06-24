@@ -9,9 +9,8 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\UserService;
 
-class CreateNewService
+class UpdateUserService
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,7 +19,7 @@ class CreateNewService
      *
      * @return void
      */
-    public function __construct(UserService $service, $type)
+    public function __construct()
     {
         //
     }

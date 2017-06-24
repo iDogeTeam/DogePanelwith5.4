@@ -21,6 +21,11 @@ class Node extends Model
 		return $this->belongsTo(NodeGroup::class, 'group_id', 'id');
 	}
 
+	public function trafficLogs()
+	{
+		return $this->hasMany(TrafficLog::class, 'node_id', 'id');
+	}
+
 	/**
 	 * Link to node logs
 	 *
@@ -32,5 +37,11 @@ class Node extends Model
 	}
 
 	// Operation
+
+	// Judgement
+	public function isNodeBelongedToUser($userId)
+	{
+		return !empty($this->nodeGroup()->getRelated()->services()->get()->where('user_id', $userId)->first());
+	}
 
 }

@@ -24,12 +24,15 @@ class EventServiceProvider extends ServiceProvider
 		],
 		'App\Events\RedeemCode' => [
 			'App\Listeners\DistributeGift'
+		],
+		'App\Events\UserHasNotEnoughCoins' => [
 		]
 	];
 
 	protected $subscribe = [
-		'App\Listeners\TopUpEventSubscriber',
-		'App\Listeners\ItemsEventSubscriber',
+		'App\Listeners\Subscriber\TopUpEventSubscriber',
+		'App\Listeners\Subscriber\ItemsEventSubscriber',
+		'App\Listeners\Subscriber\UserNotificationSubscriber',
 	];
 
 	/**

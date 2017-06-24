@@ -30,7 +30,6 @@ Auth::routes();
  * | **内部路由开始**
  */
 
-
 Route::group(['middleware' => 'auth'], function () {
 
 	// 验证用户路由
@@ -38,55 +37,59 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 正式用户路由
 	Route::group(['middleware' => 'active'], function () {
+
 		// 服务信息
-		Route::get('test', 'UserController@test');
-
-		Route::group(['prefix' => 'service','middleware' => 'belong.service'], function () {
+		Route::group(['prefix' => 'service'], function () {
 			Route::get('/', 'ServiceController@listAllServices');
-			Route::get('/{id}','ServiceController@showIndividualService');
-		});
-
-		// 节点信息
-		Route::group(['prefix' => 'node', 'middleware' => 'belong.node'], function () {
-			Route::get('/', 'NodeController@listAllNodes');
-			Route::get('/{id}', 'NodeController@showIndividualNodes');
-		});
-
-		// 用户信息
-		Route::group(['prefix' => 'user'], function () {
-
-			// 用户档案
-			Route::group(['prefix' => 'profile'], function () {
-				Route::get('/', 'UserController@showIndividual');
-				Route::get('/edit', 'UserController@editIndividualInfo');
-				Route::post('/edit', 'UserController@editIndividualInfo');
+			Route::group(['prefix' => '/{sid}', 'middleware' => 'belong.service'], function () {
+				Route::get('/', 'ServiceController@showIndividualService');
+				Route::get('/traffic/{num?}', 'ServiceController@showIndividualServiceRecentTrafficLog');
+				// 节点信息
+				Route::group(['prefix' => 'node'], function () {
+					Route::get('/', 'NodeController@listAllNodesWithinAService');
+					Route::group(['prefix' => '/{nid}', 'middleware' => 'belong.node'], function () {
+						Route::get('/', 'NodeController@showIndividualNode');
+						Route::get('/traffic/{num?}', 'NodeController@showIndividualNodeTrafficWithinAService');
+					});
+				});
 			});
-
-			// 流量信息
-			Route::group(['prefix' => 'log'], function () {
-				Route::get('/', 'LogController@index');
-				Route::get('/traffic', 'LogController@showIndividualTrafficInfo');
-				Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
-			});
-
-			// 礼品码信息，暂不处理
-			/*Route::group(['prefix' => 'giftcode'], function () {
-				Route::get('/', 'GiftCodeController@index');
-				Route::post('/', 'GiftCodeController@createIndividualCode');
-			});*/
-
-			// 销毁
-			Route::get('/destroy', 'UserController@suicide');
-			Route::post('/destroy', 'UserController@suicide');
-
-			Route::post('/checkin', 'UserController@doUserCheckIn');
-
 		});
-
-		// 系统信息
-		Route::get('/system', 'HomeController@gist');
 
 	});
+
+	// 用户信息
+	Route::group(['prefix' => 'user'], function () {
+
+		// 用户档案
+		Route::group(['prefix' => 'profile'], function () {
+			Route::get('/', 'UserController@showIndividual');
+			Route::post('/edit', 'UserController@editIndividualInfo');
+		});
+
+		// 流量信息
+		Route::group(['prefix' => 'log'], function () {
+			Route::get('/', 'LogController@index');
+			Route::get('/traffic', 'LogController@showIndividualTrafficInfo');
+			Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
+		});
+
+		// 礼品码信息，暂不处理
+		/*Route::group(['prefix' => 'giftcode'], function () {
+			Route::get('/', 'GiftCodeController@index');
+			Route::post('/', 'GiftCodeController@createIndividualCode');
+		});*/
+
+		// 销毁
+		Route::get('/destroy', 'UserController@suicide');
+		Route::post('/destroy', 'UserController@suicide');
+
+		Route::post('/checkin', 'UserController@doUserCheckIn');
+
+	});
+
+	// 系统信息
+	Route::get('/system', 'HomeController@gist');
+
 });
 
 
@@ -94,7 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
 	// 着陆页
-	Route::get('/dashboard', 'Admin\HomeController@index');
+	//Route::get('/dashboard', 'Admin\HomeController@index');
 
 	// 面板信息
 

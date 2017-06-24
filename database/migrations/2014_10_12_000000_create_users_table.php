@@ -24,13 +24,14 @@ class CreateUsersTable extends Migration
 	        $table->ipAddress('register_ip');
 	        $table->integer('ref_by')->nullable();
 	        $table->string('status')->default('pending'); // enable or disable or pending
+	        $table->integer('traffic_enable')->default(1);
 	        $table->text('note')->nullable();
 
 	        // Level
 	        $table->BigInteger('exp')->default(1);
 
 	        //  Service related
-	        $table->bigInteger('coin')->default(env('INIT_COIN',1000));
+	        $table->double('coin')->default(env('INIT_COIN',1000));
 	        $table->integer('quota')->default(env('MIN_COIN',100));
 
             // Communication tools related

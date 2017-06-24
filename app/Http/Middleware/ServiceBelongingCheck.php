@@ -16,15 +16,17 @@ class ServiceBelongingCheck
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (!($service = UserService::where('id', $request->id)->first())) {
+		if (!($service = UserService::where('id', $request->sid)->first())) {
 			return formatter(404, __('service.service_no_found'));
 		}
 
 		if ($service->isUserHasService($request->user()->id)) {
+			$request->merge(['currentServiceModel' => $service]);
+
 			return $next($request);
 		}
 
-		return formatter(403,__('service.service_does_not_belong_to_user'));
+		return formatter(403, __('service.service_does_not_belong_to_user'));
 
 	}
 }

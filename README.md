@@ -52,5 +52,9 @@ Please run the following commands at the root dictionary.
 - Optimize
   - `php artisan optimize`
 
+- Set up Daily Jobs For Laravel  
+Add the following Command to your cron. Change the path accordingly! 
+  - `* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1`
+
 and you are good to go !
 

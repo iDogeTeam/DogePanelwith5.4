@@ -77,6 +77,14 @@ class User extends Authenticatable
 	// End of Relationship
 
 
+	// Attribute
+	public function getTrafficEnableAttribute($status)
+	{
+		if ( $this->coins < $this->quota ){
+			return false;
+		}
+		return $status;
+	}
 	// User information
 
 	/**
@@ -144,7 +152,7 @@ class User extends Authenticatable
 
 	public function listAllNodeGroupID()
 	{
-		return $this->services()->map(function ($service){
+		return $this->services()->map(function ($service) {
 			$service->nodeGroup()->first()->id;  // It used to be belonging relationship, but first method keep things smoothly..
 		});
 	}

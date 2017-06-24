@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
 	        $table->ipAddress('register_ip');
 	        $table->integer('ref_by')->nullable();
 	        $table->string('status')->default('pending'); // enable or disable or pending
+	        $table->integer('traffic_enable')->default(1);
 	        $table->text('note')->nullable();
 
 	        // Level

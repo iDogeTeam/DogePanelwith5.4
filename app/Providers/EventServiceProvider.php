@@ -26,13 +26,17 @@ class EventServiceProvider extends ServiceProvider
 			'App\Listeners\DistributeGift'
 		],
 		'App\Events\UserHasNotEnoughCoins' => [
-		]
+		],
+
+		// System Provided
+		 'Illuminate\Notifications\Events\NotificationSent' => [
+        'App\Listeners\LogNotification',
+    ],
 	];
 
 	protected $subscribe = [
 		'App\Listeners\Subscriber\TopUpEventSubscriber',
 		'App\Listeners\Subscriber\ItemsEventSubscriber',
-		'App\Listeners\Subscriber\UserNotificationSubscriber',
 	];
 
 	/**

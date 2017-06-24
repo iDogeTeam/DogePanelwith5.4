@@ -17,6 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 	return $request->user();
 });
 
+// Telegram Bot
+Route::post( env('TELEGRAM_BOT_TOKEN').'/webhook',function () {
+	$update = Telegram::commandsHandler(true);
+
+	// Commands handler method returns an Update object.
+	// So you can further process $update object
+	// to however you want.
+
+	return 'ok';
+});
 
 // Deprecated Webapi 相关
 Route::group(['prefix' => 'mu', 'middleware' => 'mu'], function () {
@@ -39,3 +49,4 @@ Route::group(['prefix' => '/{token}', 'middleware' => 'server'], function () {
 		Route::post('error', 'API\ShadowsocksController@error');
 	});
 });
+

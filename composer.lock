@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c39ccfc7aa79f24d4af9612154fbb609",
+    "content-hash": "3ac95f48a87da55dd5fdb7a2fba12c11",
     "packages": [
         {
             "name": "browner12/helpers",

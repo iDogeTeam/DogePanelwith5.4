@@ -69,8 +69,8 @@ $factory->define(App\TrafficLog::class, function (Faker\Generator $faker) {
 	return [
 		'service_id'  => $service_id ? : $faker->shuffle(range(1, 100))[0],
 		'node_id' => $node_id ? : $faker->shuffle(range(1, 100))[0],
-		'download' => $faker->numberBetween(1000,10000),
-		'upload' => $faker->numberBetween(1000,10000),
+		'download' => $faker->numberBetween(1000,100000000000),
+		'upload' => $faker->numberBetween(1000,1000000000000),
 	];
 });
 

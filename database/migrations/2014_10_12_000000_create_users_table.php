@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
 	        $table->BigInteger('exp')->default(1);
 
 	        //  Service related
-	        $table->bigInteger('coin')->default(env('INIT_COIN',1000));
+	        $table->double('coin')->default(env('INIT_COIN',1000));
 	        $table->integer('quota')->default(env('MIN_COIN',100));
 
             // Communication tools related

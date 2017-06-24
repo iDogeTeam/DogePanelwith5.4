@@ -15,6 +15,6 @@ class TrafficLog extends Model
 
 	public function service()
 	{
-		$this->belongsTo(UserService::class, 'service_id', 'id');
+		return $this->belongsTo(UserService::class, 'service_id', 'id');
 	}
 }

@@ -6,8 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 use App\TrafficLog;
-use App\User;
-use Illuminate\Support\Facades\Log;
+use App\UserService;
 
 class Kernel extends ConsoleKernel
 {
@@ -31,21 +30,38 @@ class Kernel extends ConsoleKernel
 		// $schedule->command('inspire')
 		//          ->hourly();
 
-		// Conducted Coins from User every minute
+		// Calculate Coins every minute
 		$schedule->call(function () {
-			TrafficLog::where('counts', 0)->each(function ($log) {
-				$coins = $log->upload * $log->upload_price + $log->download * $log->download_price; // @TODO convert byte to GB
-				$user = $log->service->user->first();
-				$user->coin = $user->coin - $coins;
-				if ($user->save()) {
-					$log->count = 1;
-					$log->save();
-				} else {
-					Log::critical($user->id . 'failed to conducted Coins');
-				}
+			TrafficLog::whereNull('coin')->each(function ($log) {
+				$log->coin = byteToGB($log->upload) * $log->upload_price + byteToGB($log->download) * $log->download_price;
+				$log->save();
 			});
-		})->everyMinute()->name('Conduct Coins From User Account')->withoutOverlapping();
+		})->everyMinute()->name('Calculate Coins')->withoutOverlapping();
 
+		// Add Cost to Service
+		$schedule->call(function () {
+			TrafficLog::where([
+				['counted', 0], ['coin', '<>', NULL],
+			])->each(function($log){
+				$service = $log->service;
+				$service->temp_cost = $service->temp_cost + $log->coin;
+				$log->counted = 1;
+				$log->save();
+				$service->save();
+			});
+		})->name('Add Cost To Service')->withoutOverlapping()->everyMinute();
+
+		// Conducted Coins when available
+		$schedule->call(function(){
+			UserService::where('temp_cost','>=',0.01)->each(function($service){
+				$service->total_cost = $service->total_cost + $service->temp_cost;
+				$user = $service->user;
+				$user->coin = $user->coin - $service->temp_cost;
+				$user->save();
+				$service->temp_cost = 0;
+				$service->save();
+			});
+		})->name('Conducted Cost From User Account')->withoutOverlapping()->everyMinute();
 	}
 
 	/**

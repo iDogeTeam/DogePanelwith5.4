@@ -1,13 +1,16 @@
 # DogePanelwith5.4 
 
-Now building with laravel 5.4
-基于 Laravel，前端 vue+element
-按实例，使用量，并可分时间段和上下行计费的面板
-主要面向SS和OpenConnect
+Now building with laravel 5.4  
+基于 Laravel，前端 vue+element  
+按实例，使用量，并可分时间段和上下行计费的面板  
+主要面向SS和OpenConnect  
  
-Under developing...
-仍在开发中
+Under developing...  
+仍在开发中  
 
+# Docs
+
+[Here](https://github.com/iDogeTeam/PanelDocs)  
 
 # Plan
 

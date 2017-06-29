@@ -59,7 +59,8 @@ Please run the following commands at the webroot directory.
   - `php artisan key:generate`
 - Optimize
   - `php artisan optimize`
-
+- Writeable
+ - `chmod -R 777 Storage && chmod -R 777 bootstrap/cache` 
 - Set up Cron For Laravel Schedule
 Add the following Command to your cron. Change the path accordingly! 
   - `* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1`

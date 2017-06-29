@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role')->default('user'); // user or admin
 	        $table->integer('active_time')->nullable();
-	        $table->integer('group_id')->nullable(); // Divide Users
+	        $table->integer('group_id')->nullable(); // Users Group
 	        $table->ipAddress('register_ip');
 	        $table->integer('ref_by')->nullable();
 	        $table->string('status')->default('pending'); // enable or disable or pending

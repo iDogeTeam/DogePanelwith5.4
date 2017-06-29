@@ -6,7 +6,7 @@ use App\Events\RedeemCode;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DistributeGift
+class ApplyGift
 {
     /**
      * Create the event listener.

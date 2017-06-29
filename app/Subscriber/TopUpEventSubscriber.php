@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners\Subscriber;
+namespace App\Subscriber;
 
 use App\UserChangeLog;
 
@@ -24,7 +24,7 @@ class TopUpEventSubscriber
 	{
 		$events->listen(
 			'App\Events\UserCheckIn',
-			'App\Listeners\TopUpEventSubscriber@addTopUpLog'
+			'App\Subscriber\TopUpEventSubscriber@addTopUpLog'
 		);
 
 	}

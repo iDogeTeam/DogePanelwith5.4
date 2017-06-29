@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners\Subscriber;
+namespace App\Subscriber;
 
 use App\ItemLog;
 
@@ -25,7 +25,7 @@ class ItemsEventSubscriber
 	{
 		$events->listen(
 			'App\Events\UserGetsInvite',
-			'App\Listeners\ItemsEventSubscriber@addUsedItemLog'
+			'App\Subscriber\ItemsEventSubscriber@addUsedItemLog'
 		);
 
 	}

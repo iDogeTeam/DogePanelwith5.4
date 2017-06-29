@@ -38,6 +38,7 @@ class LoginController extends Controller
 		$this->middleware('guest', ['except' => 'logout']);
 	}
 
+	// @TODO Close view
 	/*	public function showLoginForm()
 		{
 		}*/
@@ -67,4 +68,12 @@ class LoginController extends Controller
 		return formatter(400,__('auth.fail'));
 	}
 
+
+	/*
+	 * Disable Login redirect
+	 */
+	protected function redirectTo()
+	{
+
+	}
 }

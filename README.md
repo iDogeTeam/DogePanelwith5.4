@@ -44,9 +44,9 @@ Recommended env:
 - MariaDB
 - Redis
 
-Please run the following commands at the root dictionary. 
+Please run the following commands at the webroot directory. 
 
-**Note that we strongly recommend that `Redis` config for this application !**  
+**Note: Please Remember to config `Redis` in the `env` file !**  
 
 - Composer
   - `Composer install`

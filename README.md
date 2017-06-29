@@ -1,8 +1,13 @@
-# DogePanelwith5.4
-Now building with laravel 5.4
+# DogePanelwith5.4 
 
-_reconstructing based on orvice/ss-panel_  
+Now building with laravel 5.4
+基于 Laravel，前端 vue+element
+按实例，使用量，并可分时间段和上下行计费的面板
+主要面向SS和OpenConnect
+ 
 Under developing...
+仍在开发中
+
 
 # Plan
 
@@ -52,7 +57,7 @@ Please run the following commands at the root dictionary.
 - Optimize
   - `php artisan optimize`
 
-- Set up Daily Jobs For Laravel  
+- Set up Cron For Laravel Schedule
 Add the following Command to your cron. Change the path accordingly! 
   - `* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1`
 

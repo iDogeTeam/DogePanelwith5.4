@@ -17,6 +17,9 @@ class CreateNodeGroupsTable extends Migration
 		    $table->increments('id');
 		    $table->string('name');
 		    $table->text('description');
+		    $table->string('type');
+		    $table->double('price')->default(1);
+		    $table->string('method')->default('aes-256-cfb');
 		    $table->integer('created_at');
 		    $table->integer('updated_at');
 	    });

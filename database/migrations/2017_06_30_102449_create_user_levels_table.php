@@ -19,7 +19,8 @@ class CreateUserLevelsTable extends Migration
 			$table->integer('amount');
 			$table->integer('shadowsocks');
 			$table->integer('anyconnect');
-			$table->timestamps();
+			$table->integer('created_at');
+			$table->integer('updated_at');
 		});
 	}
 

@@ -48,5 +48,11 @@ Route::group(['prefix' => '/{token}', 'middleware' => 'server'], function () {
 		Route::post('traffic', 'API\ShadowsocksController@traffic');
 		Route::post('error', 'API\ShadowsocksController@error');
 	});
+	// Anyconnect
+	Route::group(['prefix' => '/anyconnect/',], function () {
+		Route::get('user', 'API\AnyconnectController@user');
+		Route::post('traffic', 'API\AnyconnectController@traffic');
+		Route::post('error', 'API\AnyconnectController@error');
+	});
 });
 

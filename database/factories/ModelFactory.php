@@ -57,6 +57,7 @@ $factory->define(App\NodeGroup::class, function (Faker\Generator $faker) {
 
 	return [
 		'name'        => $faker->name,
+		'type'        => 'shadowsocks',
 		'description' => $faker->paragraphs[0],
 	];
 });

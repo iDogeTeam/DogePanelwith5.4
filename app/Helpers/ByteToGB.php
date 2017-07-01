@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('bytyToGB')) {
+if (!function_exists('byteToGB')) {
 
     /**
      * description

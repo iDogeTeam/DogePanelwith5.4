@@ -81,7 +81,7 @@ class User extends Authenticatable
 	// Attribute
 	public function getTrafficEnableAttribute($status)
 	{
-		if ($this->coins < $this->quota) {
+		if ($this->coin < $this->quota) {
 			return false;
 		}
 

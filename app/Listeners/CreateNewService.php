@@ -46,6 +46,7 @@ class CreateNewService
 				$service->method = $group->method;
 				break;
 			case 'anyconnect':
+				$service->username = $event->user->email;
 				break;
 			default:
 				break;

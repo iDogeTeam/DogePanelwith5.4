@@ -23,6 +23,8 @@ class CreateNodesTable extends Migration
 			$table->ipAddress('ip_address');
 			$table->string('method')->nullable(); // Null Means allow any.
 			$table->text('note')->nullable();
+			$table->double('upload_price')->default(1);
+			$table->double('download_price')->default(1);
 			$table->integer('created_at');
 			$table->integer('updated_at');
 		});

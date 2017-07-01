@@ -10,6 +10,13 @@ class UserService extends Model
 
 	protected $dateFormat = 'U';
 
+	protected $hidden = [
+
+	];
+
+	protected $visible = [
+		'method', 'port', 'password', 'id', 'status', 'traffic',
+	];
 	/**
 	 * Table Name
 	 *
@@ -53,11 +60,16 @@ class UserService extends Model
 
 	public function getStatusAttribute($status)
 	{
-		if ($this->user()->getRelated()->traffic_enable !== '1') {
-			return false;
+		if ($this->user()->first()->traffic_enable != 1) {
+			return 'disabled';
 		}
 
 		return $status;
+	}
+
+	public function getRestAttribute()
+	{
+		return $this->user()->first()->coin;
 	}
 
 	// Query

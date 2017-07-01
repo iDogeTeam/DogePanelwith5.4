@@ -9,6 +9,10 @@ class Node extends Model
 	// Properties
 
 	protected $dateFormat = 'U';
+
+	protected $hidden = [
+
+	];
 	// Relationships
 
 	/**

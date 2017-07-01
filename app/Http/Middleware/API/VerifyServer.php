@@ -4,6 +4,7 @@ namespace App\Http\Middleware\API;
 
 use Closure;
 use App\Node;
+use Illuminate\Support\Facades\Route;
 
 class VerifyServer
 {
@@ -18,8 +19,12 @@ class VerifyServer
 	{
 		$node = Node::where('token', $request->token)->firstOrFail();
 
-		$request->merge(['node' => $node]);
+		if (preg_match('/' . $node->type . '/', Route::current()->uri())) {
+			$request->merge(['node' => $node]);
 
-		return $next($request);
+			return $next($request);
+		}
+
+		abort(404);
 	}
 }

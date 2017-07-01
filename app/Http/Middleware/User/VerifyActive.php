@@ -16,7 +16,7 @@ class VerifyActive
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (Auth::check() && ($status = Auth::user()->status) === 'enable') {
+		if (Auth::check() && (($status = Auth::user()->status) === 'enable' || (Auth::user()->role === 'admin'))) {
 			return $next($request);
 		}
 

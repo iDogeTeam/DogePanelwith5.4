@@ -67,10 +67,10 @@ $factory->define(App\TrafficLog::class, function (Faker\Generator $faker) {
 	static $node_id;
 
 	return [
-		'service_id'  => $service_id ? : $faker->shuffle(range(1, 100))[0],
-		'node_id' => $node_id ? : $faker->shuffle(range(1, 100))[0],
-		'download' => $faker->numberBetween(1000,100000000000),
-		'upload' => $faker->numberBetween(1000,1000000000000),
+		'service_id' => $service_id ? : $faker->shuffle(range(1, 100))[0],
+		'node_id'    => $node_id ? : $faker->shuffle(range(1, 100))[0],
+		'download'   => $faker->numberBetween(1000, 100000000000),
+		'upload'     => $faker->numberBetween(1000, 1000000000000),
 	];
 });
 
@@ -81,8 +81,25 @@ $factory->define(App\ItemLog::class, function (Faker\Generator $faker) {
 	static $item_id;
 
 	return [
-		'user_id'  => $user_id ? : $faker->shuffle(range(1, 100))[0],
-		'item_id'  => $item_id ? : $faker->shuffle(range(1, 100))[0],
-		'action' => $faker->boolean(10) ? 'create' : 'used',
+		'user_id' => $user_id ? : $faker->shuffle(range(1, 100))[0],
+		'item_id' => $item_id ? : $faker->shuffle(range(1, 100))[0],
+		'action'  => $faker->boolean(10) ? 'create' : 'used',
+	];
+});
+
+
+// ItemLog
+
+$factory->define(App\UserLevel::class, function (Faker\Generator $faker) {
+	static $level;
+	static $amount;
+	static $shadowsocks;
+	static $anyconnnect;
+
+	return [
+		'level'       => $level,
+		'amount'      => $amount,
+		'shadowsocks' => $shadowsocks,
+		'anyconnect'  => $anyconnnect,
 	];
 });

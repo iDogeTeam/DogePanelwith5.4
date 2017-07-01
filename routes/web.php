@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 		// 服务信息
 		Route::group(['prefix' => 'service'], function () {
 			Route::get('/', 'ServiceController@listAllServices');
+			Route::post('/create','ServiceController@createNewService');
 			Route::group(['prefix' => '/{sid}', 'middleware' => 'belong.service'], function () {
 				Route::get('/', 'ServiceController@showIndividualService');
 				Route::get('/traffic/{num?}', 'ServiceController@showIndividualServiceRecentTrafficLog');
@@ -73,11 +74,11 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('/checkin', 'LogController@showIndividualCheckInInfo');
 		});
 
-		// 礼品码信息，暂不处理
-		/*Route::group(['prefix' => 'giftcode'], function () {
-			Route::get('/', 'GiftCodeController@index');
-			Route::post('/', 'GiftCodeController@createIndividualCode');
-		});*/
+		// 礼品/激活码
+		Route::group(['prefix' => 'code'], function () {
+			Route::get('/', 'CodeController@index');
+			Route::post('/', 'CodeController@createIndividualCode');
+		});
 
 		// 销毁
 		Route::get('/destroy', 'UserController@suicide');

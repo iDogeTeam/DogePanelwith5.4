@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\UserLevel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -80,11 +81,31 @@ class User extends Authenticatable
 	// Attribute
 	public function getTrafficEnableAttribute($status)
 	{
-		if ( $this->coins < $this->quota ){
+		if ($this->coins < $this->quota) {
 			return false;
 		}
+
 		return $status;
 	}
+
+	/**
+	 * admin if User's id is 1
+	 *
+	 * @param $role
+	 * @return string
+	 */
+	public function getRoleAttribute($role)
+	{
+		if ($this->id == 1) return 'admin';
+
+		return $role;
+	}
+
+	public function getLevelAttribute()
+	{
+		return UserLevel::where('amount', '<', $this->exp)->first()->level;
+	}
+
 	// User information
 
 	/**
@@ -150,6 +171,11 @@ class User extends Authenticatable
 		})->flatten()->toArray();
 	}
 
+	public function getServiceNumberByType($type)
+	{
+		return $this->services()->where('type', $type)->count();
+	}
+
 	public function listAllNodeGroupID()
 	{
 		return $this->services()->map(function ($service) {
@@ -187,5 +213,12 @@ class User extends Authenticatable
 		} else {
 			return true; // Register
 		}
+	}
+
+	public function isAbleToCreateNewService($type)
+	{
+		if (UserLevel::where('amount', '<', $this->exp)->first()->$type > $this->getServiceNumberByType($type)) return true;
+
+		return false;
 	}
 }

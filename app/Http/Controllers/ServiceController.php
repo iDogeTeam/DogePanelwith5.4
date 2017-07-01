@@ -26,4 +26,9 @@ class ServiceController extends Controller
 	{
 		return dataFormatter($request->currentServiceModel->trafficLogs()->take(empty($request->num) ? 20 : $request->num)->get());
 	}
+
+	public function createNewService(Request $request)
+	{
+
+	}
 }

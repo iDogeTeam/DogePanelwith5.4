@@ -24,16 +24,11 @@ class UserController extends Controller
 			shuffle($range);
 			event(new UserCheckIn($request->user(), $range[0]));
 
-			return formatter(200, ['amount' => $range[0]]);
+			return dataFormatter(['amount' => $range[0]]);
 		} else {
-			return formatter(413, ['content' => __('user.user_have_already_checked_in'),
-			                       'time'    => $request->user()->lastCheckInTime()->timestamp]);
+			return formatter(413, __('user.user_have_already_checked_in'), ['time' => $request->user()->lastCheckInTime()->timestamp]);
 		}
 
 	}
 
-
-	public function test()
-	{
-	}
 }

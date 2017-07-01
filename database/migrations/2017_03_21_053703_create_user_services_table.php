@@ -18,7 +18,7 @@ class CreateUserServicesTable extends Migration
 		    $table->increments('id');
 		    $table->integer('user_id');
 		    $table->integer('group_id'); // NodeGroup
-		    $table->string('type'); // anygitconnect or shadowsocks
+		    $table->string('type'); // anyconnect or shadowsocks
 		    $table->string('status')->default('enable'); // enable or disable
 	    	$table->string('password');
 		    $table->integer('port')->nullable();

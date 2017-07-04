@@ -75,6 +75,17 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(ItemLog::class);
 	}
+
+	/**
+	 * Login Addresses
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+	 */
+	public function ipAddress()
+	{
+		return $this->morphMany('App\IPAddress', 'source');
+	}
+
 	// End of Relationship
 
 

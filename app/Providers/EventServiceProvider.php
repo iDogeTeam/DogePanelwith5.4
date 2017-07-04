@@ -28,19 +28,25 @@ class EventServiceProvider extends ServiceProvider
 		'App\Events\UserHasNotEnoughCoins' => [
 		],
 
+		'App\Events\LogIPAddress' => [
+		],
+
 		'App\Events\UserCreateNewService'                  => [
 			'App\Listeners\CreateNewService',
 		],
+
 
 		// System Provided
 		'Illuminate\Notifications\Events\NotificationSent' => [
 			'App\Listeners\LogNotification',
 		],
+
 	];
 
 	protected $subscribe = [
 		'App\Subscriber\TopUpEventSubscriber',
 		'App\Subscriber\ItemsEventSubscriber',
+		'App\Subscriber\IPAddressSubscriber',
 	];
 
 	/**

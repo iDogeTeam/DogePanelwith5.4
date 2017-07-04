@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\LogIPAddress;
 use App\TrafficLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -57,6 +58,11 @@ class ShadowsocksController extends Controller
 			if (!$log->save()) {
 				$error[] = $traffic['service_id'];
 			}
+
+			foreach ($traffic['ip_addresses'] as $ipAddress) {
+				event(new LogIPAddress('traffic', $log->id, $ipAddress));
+			}
+
 		}
 
 		if (!empty($error)) {

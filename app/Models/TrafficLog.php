@@ -17,4 +17,14 @@ class TrafficLog extends Model
 	{
 		return $this->belongsTo(UserService::class, 'service_id', 'id');
 	}
+
+	/**
+	 * User Addresses
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+	 */
+	public function ipAddress()
+	{
+		return $this->morphMany('App\IPAddress', 'source');
+	}
 }

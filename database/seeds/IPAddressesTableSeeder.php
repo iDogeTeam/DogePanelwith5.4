@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LevelTableSeeder extends Seeder
+class IPAddressesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class LevelTableSeeder extends Seeder
      */
     public function run()
     {
+    	factory(App\IPAddress::class,10000)->create();
         //
-	    factory(App\UserLevel::class,5)->create();
     }
 }

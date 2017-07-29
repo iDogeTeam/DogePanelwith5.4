@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateTrafficLogHourTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('traffic_log_hour', function (Blueprint $table) {
+            //
+	        $table->increments('id');
+	        $table->integer('service_id');
+	        $table->integer('node_id');
+	        $table->bigInteger('total');
+	        $table->integer('created_at');
+	        $table->integer('updated_at');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('traffic_log_hour', function (Blueprint $table) {
+            //
+        });
+    }
+}

@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
 		Relation::morphMap([
 			'user'    => \App\User::class,
 			'traffic' => \App\TrafficLog::class,
+			'hour'    => \App\HourTrafficLog::class,
+			'day'     => \App\DayTrafficLog::class,
 		]);
 
 	}

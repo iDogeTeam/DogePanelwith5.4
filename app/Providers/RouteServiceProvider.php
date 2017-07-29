@@ -84,7 +84,8 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	protected function mapBotRoutes()
 	{
-		Route::namespace($this->namespace)
+		Route::prefix('telegram')
+			->namespace($this->namespace)
 			->group(base_path('routes/bot.php'));
 	}
 }

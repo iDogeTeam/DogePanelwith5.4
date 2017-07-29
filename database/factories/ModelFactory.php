@@ -104,3 +104,13 @@ $factory->define(App\UserLevel::class, function (Faker\Generator $faker) {
 		'anyconnect'  => $anyconnnect,
 	];
 });
+
+
+// IPAddressTable
+$factory->define(App\IPAddress::class, function (Faker\Generator $faker) {
+	return [
+		'source_type' => $faker->boolean(10) ? 'user' : 'traffic',
+		'source_id'   => $faker->numberBetween(1, 5000),
+		'ip_address'  => $faker->ipv4,
+	];
+});
